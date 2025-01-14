@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import SelectComponent from "./SelectComponent";
 import ButtonComponent from "./ButtonComponent";
+import checkLink from "../utils/fetch";
 
 const MainComponent = () => {
   const [targy, setTargy] = useState<string>("");
@@ -8,6 +9,21 @@ const MainComponent = () => {
   const [szint, setSzint] = useState<string>("");
   const [idoszak, setIdoszak] = useState<string>("");
   const [honap, setHonap] = useState<string>("");
+
+  const url = `https://dload-oktatas.educatio.hu/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
+    0,
+    1
+  )}_${targy}_${ev.substring(2, 4)}${honap}_fl.pdf`;
+
+  const url_guide = `https://dload-oktatas.educatio.hu/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
+    0,
+    1
+  )}_${targy}_${ev.substring(2, 4)}${honap}_ut.pdf`;
+
+  const url_voice = `https://dload-oktatas.educatio.hu/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
+    0,
+    1
+  )}_${targy}_${ev.substring(2, 4)}${honap}_fl.mp3`;
 
   useEffect(() => {
     if (idoszak === "osz") {
@@ -17,21 +33,15 @@ const MainComponent = () => {
     }
   }, [idoszak]);
 
-  const url = `https://dload-oktatas.educatio.hu/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
-    0,
-    1
-  )}_${targy}_${ev.substring(2, 4)}${honap}_fl.pdf`;
-
   const handleSearch = () => {
-    if (
-      targy.length === 0 ||
-      ev.length === 0 ||
-      idoszak.length === 0 ||
-      szint.length === 0
-    ) {
-      alert("Adj meg valami értéket!");
-    } else {
+    if (!isDisabled) {
       window.open(url, "_blank");
+    }
+  };
+
+  const handleGuide = () => {
+    if (!isDisabled) {
+      window.open(url_guide, "_blank");
     }
   };
 
@@ -100,7 +110,16 @@ const MainComponent = () => {
           ]}
           onValueChange={setSzint}
         />
-        <ButtonComponent onClick={handleSearch} disabled={isDisabled} />
+        <ButtonComponent
+          onClick={handleSearch}
+          disabled={isDisabled}
+          title={"Keresés"}
+        />
+        <ButtonComponent
+          onClick={handleGuide}
+          disabled={isDisabled}
+          title={"Javítási útmutató"}
+        />
       </div>
       <div className="border-t border-[#1f1f1f] h-[10%]"></div>
     </div>
