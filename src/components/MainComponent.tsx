@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import SelectComponent from "./SelectComponent";
 import ButtonComponent from "./ButtonComponent";
-import checkLink from "../utils/fetch";
+import { Search } from 'lucide-react';
 
 const MainComponent = () => {
   const [targy, setTargy] = useState<string>("");
@@ -9,18 +10,21 @@ const MainComponent = () => {
   const [szint, setSzint] = useState<string>("");
   const [idoszak, setIdoszak] = useState<string>("");
   const [honap, setHonap] = useState<string>("");
+  const [isTask, setIsTask] = useState<Boolean>(false);
+  const [isGuide, setIsGuide] = useState<Boolean>(false);
+  const [isAudio, setIsAudio] = useState<Boolean>(false);
 
-  const url = `https://dload-oktatas.educatio.hu/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
+  const url = `api/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
     0,
     1
   )}_${targy}_${ev.substring(2, 4)}${honap}_fl.pdf`;
 
-  const url_guide = `https://dload-oktatas.educatio.hu/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
+  const url_guide = `api/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
     0,
     1
   )}_${targy}_${ev.substring(2, 4)}${honap}_ut.pdf`;
 
-  const url_voice = `https://dload-oktatas.educatio.hu/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
+  const url_voice = `api/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
     0,
     1
   )}_${targy}_${ev.substring(2, 4)}${honap}_fl.mp3`;
@@ -33,16 +37,26 @@ const MainComponent = () => {
     }
   }, [idoszak]);
 
-  const handleSearch = () => {
-    if (!isDisabled) {
-      window.open(url, "_blank");
+  // Ellenőrzi, hogy az adott URL elérhető-e
+  const checkLink = async (url: string): Promise<boolean> => {
+    try {
+      const response = await axios.head(url);
+      return response.status >= 200 && response.status < 300;
+    } catch {
+      return false;
     }
   };
 
-  const handleGuide = () => {
-    if (!isDisabled) {
-      window.open(url_guide, "_blank");
-    }
+  const handleSearch = async () => {
+    // Ellenőrzés az URL-ekre
+    const taskAvailable = await checkLink(url);
+    const guideAvailable = await checkLink(url_guide);
+    const audioAvailable = await checkLink(url_voice);
+
+    // Állapotok frissítése
+    setIsTask(taskAvailable);
+    setIsGuide(guideAvailable);
+    setIsAudio(audioAvailable);
   };
 
   // Ellenőrzés, hogy minden szükséges mező ki van-e töltve
@@ -54,11 +68,13 @@ const MainComponent = () => {
 
   return (
     <div className="border border-[#1f1f1f] rounded-lg h-[650px] w-[500px]">
+
       <div className="border-b border-[#1f1f1f] h-[10%] flex justify-center items-center">
         <span className="font-medium text-xl hover:text-[#8a8a8a] transition-colors duration-300">
-          Érettségi Browser
+          Érettségi Segéd
         </span>
       </div>
+
       <div className="h-[80%] flex justify-center items-center flex-col">
         <SelectComponent
           placeholder="Tárgy"
@@ -110,18 +126,14 @@ const MainComponent = () => {
           ]}
           onValueChange={setSzint}
         />
-        <ButtonComponent
-          onClick={handleSearch}
-          disabled={isDisabled}
-          title={"Keresés"}
-        />
-        <ButtonComponent
-          onClick={handleGuide}
-          disabled={isDisabled}
-          title={"Javítási útmutató"}
-        />
+        <ButtonComponent onClick={handleSearch} title="Keresés" disabled={isDisabled} icon={<Search className="mr-2"/>}/>
       </div>
-      <div className="border-t border-[#1f1f1f] h-[10%]"></div>
+
+      <div className="border-t border-[#1f1f1f] flex justify-center items-center gap-4 h-[8%]">
+          {isTask ? <ButtonComponent title="Feladat" onClick={() => { window.open(url) }} disabled={isDisabled} /> : ""}
+          {isGuide ? <ButtonComponent title="Útmutató" onClick={() => { window.open(url_guide) }} disabled={isDisabled} /> : ""}
+          {isAudio ? <ButtonComponent title="Hanganyag" onClick={() => { window.open(url_voice) }} disabled={isDisabled} /> : ""}
+      </div>
     </div>
   );
 };

@@ -1,9 +1,8 @@
 Priority:
 [x] Javítási útmutatók megnyitása
-[] Hanganyagok megnyitása
+[x] Hanganyagok megnyitása
+[x] Ikonok hozzáadása
+[] Keresés gomb (spinning animáció kattintásnál) és utána jelenjenek meg a feladatlap, utmutato, hanganyag, .zip file gombok
 [] Korábban megnyitott érettségik listája
-[] Ikonok hozzáadása
-
-Not necessary:
-[] Changelog oldal (nem prioritás)
 [] Checklist hogy milyen feladatokat akarsz megcsinálni
+[] Changelog oldal (nem prioritás)
