@@ -43,19 +43,18 @@ const MainComponent = () => {
     }
   }, [idoszak]);
 
-  const checkLink = async (url: string): Promise<boolean> => {
+  /*const checkLink = async (url: string): Promise<boolean> => {
     try {
       const response = await axios.head(url);
       return response.status >= 200 && response.status < 300;
     } catch {
       return false;
     }
-  };
+  };*/
 
   const fetchFile = async (url: string) => {
     const response = await fetch(url);
     if (response.ok) {
-      const blob = await response.blob();
       // Kezelés, pl. letöltés
       return true;
     } else {
