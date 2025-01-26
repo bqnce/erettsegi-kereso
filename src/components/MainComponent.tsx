@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import SelectComponent from "./SelectComponent";
 import ButtonComponent from "./ButtonComponent";
 import { Search } from 'lucide-react';
