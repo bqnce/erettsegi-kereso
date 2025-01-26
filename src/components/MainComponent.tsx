@@ -35,8 +35,6 @@ const MainComponent = () => {
     1
   )}_${targy}for_${ev.substring(2, 4)}${honap}_fl.zip`;
 
-  //https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2024osz_kozep/k_digkultfor_24okt_fl.zip
-
   useEffect(() => {
     if (idoszak === "osz") {
       setHonap("okt");
@@ -45,7 +43,6 @@ const MainComponent = () => {
     }
   }, [idoszak]);
 
-  // Ellenőrzi, hogy az adott URL elérhető-e
   const checkLink = async (url: string): Promise<boolean> => {
     try {
       const response = await axios.head(url);
@@ -55,21 +52,30 @@ const MainComponent = () => {
     }
   };
 
-  const handleSearch = async () => {
-    // Ellenőrzés az URL-ekre
-    const taskAvailable = await checkLink(url);
-    const guideAvailable = await checkLink(url_guide);
-    const audioAvailable = await checkLink(url_voice);
-    const zipAvailable = await checkLink(url_zip);
+  const fetchFile = async (url: string) => {
+    const response = await fetch(url);
+    if (response.ok) {
+      const blob = await response.blob();
+      // Kezelés, pl. letöltés
+      return true;
+    } else {
+      console.error("Error fetching file:", await response.json());
+      return false;
+    }
+  };
 
-    // Állapotok frissítése
+  const handleSearch = async () => {
+    const taskAvailable = await fetchFile(url);
+    const guideAvailable = await fetchFile(url_guide);
+    const audioAvailable = await fetchFile(url_voice);
+    const zipAvailable = await fetchFile(url_zip);
+
     setIsTask(taskAvailable);
     setIsGuide(guideAvailable);
     setIsAudio(audioAvailable);
     setIsZip(zipAvailable);
   };
 
-  // Ellenőrzés, hogy minden szükséges mező ki van-e töltve
   const isDisabled =
     targy.length === 0 ||
     ev.length === 0 ||
