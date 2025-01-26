@@ -15,21 +15,22 @@ const MainComponent = () => {
   const [isAudio, setIsAudio] = useState<Boolean>(false);
   const [isZip, setIsZip] = useState<Boolean>(false);
 
+
   const url = `api/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
     0,
     1
   )}_${targy}_${ev.substring(2, 4)}${honap}_fl.pdf`;
-
+  
   const url_guide = `api/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
     0,
     1
   )}_${targy}_${ev.substring(2, 4)}${honap}_ut.pdf`;
-
+  
   const url_voice = `api/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
     0,
     1
   )}_${targy}_${ev.substring(2, 4)}${honap}_fl.mp3`;
-
+  
   const url_zip = `api/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
     0,
     1
@@ -53,12 +54,11 @@ const MainComponent = () => {
   };*/
 
   const fetchFile = async (url: string) => {
-    const response = await fetch(url);
-    if (response.ok) {
-      // Kezelés, pl. letöltés
-      return true;
-    } else {
-      console.error("Error fetching file:", await response.json());
+    try {
+      const response = await fetch(url, { method: "HEAD" });
+      return response.ok;
+    } catch (error) {
+      console.error("Error fetching file:", error);
       return false;
     }
   };

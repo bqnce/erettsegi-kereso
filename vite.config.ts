@@ -11,10 +11,10 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api': {
-        target: 'https://dload-oktatas.educatio.hu',
+      "/api": {
+        target: "https://dload-oktatas.educatio.hu",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/api/, ""),
       },
     },
   },
