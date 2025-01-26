@@ -13,6 +13,7 @@ const MainComponent = () => {
   const [isTask, setIsTask] = useState<Boolean>(false);
   const [isGuide, setIsGuide] = useState<Boolean>(false);
   const [isAudio, setIsAudio] = useState<Boolean>(false);
+  const [isZip, setIsZip] = useState<Boolean>(false);
 
   const url = `api/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
     0,
@@ -28,6 +29,13 @@ const MainComponent = () => {
     0,
     1
   )}_${targy}_${ev.substring(2, 4)}${honap}_fl.mp3`;
+
+  const url_zip = `api/erettsegi/feladatok_${ev}${idoszak}_${szint}/${szint.substring(
+    0,
+    1
+  )}_${targy}for_${ev.substring(2, 4)}${honap}_fl.zip`;
+
+  //https://www.oktatas.hu/bin/content/dload/erettsegi/feladatok_2024osz_kozep/k_digkultfor_24okt_fl.zip
 
   useEffect(() => {
     if (idoszak === "osz") {
@@ -52,11 +60,13 @@ const MainComponent = () => {
     const taskAvailable = await checkLink(url);
     const guideAvailable = await checkLink(url_guide);
     const audioAvailable = await checkLink(url_voice);
+    const zipAvailable = await checkLink(url_zip);
 
     // Állapotok frissítése
     setIsTask(taskAvailable);
     setIsGuide(guideAvailable);
     setIsAudio(audioAvailable);
+    setIsZip(zipAvailable);
   };
 
   // Ellenőrzés, hogy minden szükséges mező ki van-e töltve
@@ -133,6 +143,7 @@ const MainComponent = () => {
           {isTask ? <ButtonComponent title="Feladat" onClick={() => { window.open(url) }} disabled={isDisabled} /> : ""}
           {isGuide ? <ButtonComponent title="Útmutató" onClick={() => { window.open(url_guide) }} disabled={isDisabled} /> : ""}
           {isAudio ? <ButtonComponent title="Hanganyag" onClick={() => { window.open(url_voice) }} disabled={isDisabled} /> : ""}
+          {isZip ? <ButtonComponent title="Segédlet" onClick={() => { window.open(url_zip) }} disabled={isDisabled} /> : ""}
       </div>
     </div>
   );
