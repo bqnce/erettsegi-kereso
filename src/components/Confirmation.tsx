@@ -9,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 
-import { Cloud, CloudDownload, ShieldAlert } from 'lucide-react';
+import { CloudDownload, ShieldAlert } from 'lucide-react';
 
 type ButtonProps = {
   onClick: () => void;
