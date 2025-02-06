@@ -15,12 +15,14 @@ type ButtonProps = {
   onClick: () => void;
   disabled: boolean;
   title: string;
+  fileName: string;
 };
 
 const ButtonComponent: React.FC<ButtonProps> = ({
   onClick,
   disabled,
   title,
+  fileName
 }) => {
 
   return (
@@ -28,7 +30,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
       <DialogTrigger asChild>
         <button className={`border border-[#1f1f1f] p-2 rounded hover:border-[#3f3f3f] transition-all duration-300 flex ${disabled ? "flex opacity-50 cursor-not-allowed" : ""}`} >{title}</button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-[#030303] text-[#dbdbdb] border-[#141414] shadow-[#040404]">
+      <DialogContent className="sm:max-w-[425px] bg-[#030303] text-[#dbdbdb] border-[#141414] shadow-[#040404] w-[330px]">
         <DialogHeader>
           <DialogTitle className="flex flex-row items-center gap-2">
             <ShieldAlert color="#e74c3c"/>
@@ -37,6 +39,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
           <br />
           <DialogDescription>
             Kérlek erősítsd meg, hogy le szeretnéd tölteni a segédletet!
+            ({fileName.split('/').pop()})
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

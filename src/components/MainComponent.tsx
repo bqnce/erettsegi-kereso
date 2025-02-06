@@ -65,7 +65,6 @@ const MainComponent = () => {
       <div className="h-[125px] w-[125px] rounded-full absolute left-[33%] top-[75%] blur-3xl opacity-0 2xl:opacity-65 bg-violet-500"></div>
       <div className="h-[125px] w-[125px] rounded-full absolute right-[33%] top-[8%] blur-3xl opacity-0 2xl:opacity-65 bg-indigo-500"></div>
 
-
       <div className='h-[80px] flex justify-center items-center rounded-t border-t border-b border-[#1f1f1f]'>
           <Header />
         </div>
@@ -105,7 +104,7 @@ const MainComponent = () => {
               <ButtonComponent title="Hanganyag" onClick={() => window.open(urls.audio as string)} disabled={isDisabled} />
             )}
             {isZip && urls?.zip && (
-            <Confirmation title="Segédlet" onClick={() => window.open(urls.zip as string)} disabled={isDisabled}/>
+            <Confirmation title="Segédlet" onClick={() => window.open(urls.zip as string)} disabled={isDisabled} fileName={urls.zip}/> 
             )}
         </div>
       </div>

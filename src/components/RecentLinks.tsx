@@ -11,10 +11,9 @@ const RecentLinks = () => {
     }
   }, []);
 
-  // Function to handle row click and open the link
   const handleRowClick = (link: string | null) => {
     if (link) {
-      window.open(link, "_blank"); // Opens the link in a new tab
+      window.open(link, "_blank");
     }
   };
 
