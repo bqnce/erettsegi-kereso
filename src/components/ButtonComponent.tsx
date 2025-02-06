@@ -14,7 +14,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className={`mt-4 border border-[#1f1f1f] p-2 rounded hover:border-[#3f3f3f] transition-all duration-300 flex ${
+      className={`border border-[#1f1f1f] p-2 rounded hover:border-[#3f3f3f] transition-all duration-300 flex items-center ${
         disabled ? "flex opacity-50 cursor-not-allowed" : ""
       }`}
       onClick={onClick}

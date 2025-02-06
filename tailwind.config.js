@@ -15,6 +15,21 @@ export default {
         darkHover: "#333333",
         darkFocus: "#444444",
       },
+      'animation': {
+            'text':'text 5s ease infinite',
+        },
+        'keyframes': {
+            'text': {
+                '0%, 100%': {
+                   'background-size':'200% 200%',
+                    'background-position': 'left center'
+                },
+                '50%': {
+                   'background-size':'200% 200%',
+                    'background-position': 'right center'
+                }
+            },
+        }
     },
   },
   plugins: [require("tailwindcss-animate")],

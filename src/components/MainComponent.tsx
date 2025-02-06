@@ -5,7 +5,8 @@ import { Search } from 'lucide-react';
 import { generateUrls } from '../utils/generateUrls';
 import SelectComponent from "./SelectComponent";
 import ButtonComponent from "./ButtonComponent";
-import RecentLinks from './RecentLinks';
+import Confirmation from './Confirmation';
+import Header from './Header';
 
 const MainComponent = () => {
   const [targy, setTargy] = useState<string>("");
@@ -19,6 +20,7 @@ const MainComponent = () => {
   const [isZip, setIsZip] = useState<Boolean>(false);
 
   const urls = generateUrls(ev, idoszak, szint, targy, honap);
+  const isDisabled = !targy || !ev || !idoszak || !szint;
 
   useEffect(() => {
     if (idoszak === "osz") {
@@ -39,7 +41,6 @@ const MainComponent = () => {
     setIsAudio(audioAvailable);
     setIsZip(zipAvailable);
   
-    // Save the selected options to LocalStorage
     const recentItem = {
       targy: { value: targy, label: optionsTargy.find(o => o.value === targy)?.label },
       ev: { value: ev, label: optionsEv.find(o => o.value === ev)?.label },
@@ -57,56 +58,51 @@ const MainComponent = () => {
     localStorage.setItem('recentLinks', JSON.stringify([recentItem, ...recentLinks].slice(0, 10)));
   };
   
-
-  const isDisabled =
-    targy.length === 0 ||
-    ev.length === 0 ||
-    idoszak.length === 0 ||
-    szint.length === 0;
-
   return (
-    <div className="border border-[#1f1f1f] rounded-lg h-[650px] w-[500px]">
-
-      <div className="border-b border-[#1f1f1f] h-[10%] flex justify-center items-center">
-        <span className="font-medium text-xl hover:text-[#8a8a8a] transition-colors duration-300">
-          Érettségi Segéd
-        </span>
+    <>
+      <div className='h-[650px] w-[500px] rounded border border-[#1f1f1f]'>
+        <div className='h-[80px] flex justify-center items-center border-b border-[#1f1f1f]'>
+          <Header />
+        </div>
+        <div className='h-[490px] flex justify-center items-center gap-4 flex-col'>
+          <SelectComponent
+            placeholder="Tárgy"
+            options={optionsTargy}
+            onValueChange={setTargy}
+          />
+          <SelectComponent
+            placeholder="Év"
+            options={optionsEv}
+            onValueChange={setEv}
+          />
+          <SelectComponent
+            placeholder="Időszak"
+            options={optionsIdoszak}
+            onValueChange={setIdoszak}
+          />
+          <SelectComponent
+            placeholder="Szint"
+            options={optionsSzint}
+            onValueChange={setSzint}
+          />
+          <ButtonComponent onClick={handleSearch} title="Keresés" disabled={isDisabled} icon={<Search className="mr-2 size-5"/>}/>
+        </div>
+         <div className="h-[80px] border-t border-[#1f1f1f] flex justify-center items-center gap-4">
+            {isTask && urls?.task && (
+              <ButtonComponent title="Feladat" onClick={() => window.open(urls.task as string)} disabled={isDisabled} />
+            )}
+            {isGuide && urls?.guide && (
+              <ButtonComponent title="Útmutató" onClick={() => window.open(urls.guide as string)} disabled={isDisabled} />
+            )}
+            {isAudio && urls?.audio && (
+              <ButtonComponent title="Hanganyag" onClick={() => window.open(urls.audio as string)} disabled={isDisabled} />
+            )}
+            {isZip && urls?.zip && (
+            <Confirmation title="Segédlet" onClick={() => window.open(urls.zip as string)} disabled={isDisabled}/>
+            )}
+        </div>
       </div>
-
-      <div className="h-[80%] flex justify-center items-center flex-col gap-3">
-        <SelectComponent
-          placeholder="Tárgy"
-          options={optionsTargy}
-          onValueChange={setTargy}
-        />
-        <SelectComponent
-          placeholder="Év"
-          options={optionsEv}
-          onValueChange={setEv}
-        />
-        <SelectComponent
-          placeholder="Időszak"
-          options={optionsIdoszak}
-          onValueChange={setIdoszak}
-        />
-        <SelectComponent
-          placeholder="Szint"
-          options={optionsSzint}
-          onValueChange={setSzint}
-        />
-        <ButtonComponent onClick={handleSearch} title="Keresés" disabled={isDisabled} icon={<Search className="mr-2"/>}/>
-      </div>
-
-      <div className="border-t border-[#1f1f1f] flex justify-center items-center gap-4 h-[8%]">
-          {isTask ? <ButtonComponent title="Feladat" onClick={() => { window.open(urls.task) }} disabled={isDisabled} /> : ""}
-          {isGuide ? <ButtonComponent title="Útmutató" onClick={() => { window.open(urls.guide) }} disabled={isDisabled} /> : ""}
-          {isAudio ? <ButtonComponent title="Hanganyag" onClick={() => { window.open(urls.audio) }} disabled={isDisabled} /> : ""}
-          {isZip ? <ButtonComponent title="Segédlet" onClick={() => { window.open(urls.zip) }} disabled={isDisabled} /> : ""}
-      </div>
-      <div className="h-full flex justify-center items-center">
-        <RecentLinks />
-      </div>
-    </div>
+    </>
   );
 };
 
