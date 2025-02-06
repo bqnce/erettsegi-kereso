@@ -19,8 +19,6 @@ const SelectComponent: React.FC<SelectComponentProps> = ({
 }) => {
   return (
     <>
-          <div className='absolute w-screen top-0 h-[10px] bg-indigo-500 blur-2xl sm:hidden'></div>
-      <div className='absolute w-screen bottom-0 h-[5px] bg-indigo-400 blur-2xl sm:hidden'></div>
     <Select onValueChange={onValueChange}>
       <SelectTrigger className="w-[180px] bg-darkBg border border-darkBorder text-[#dbdbdb] focus:border-darkBorder focus:ring-5 hover:border-[#3f3f3f] transition-all duration-300">
         <SelectValue placeholder={placeholder} />
