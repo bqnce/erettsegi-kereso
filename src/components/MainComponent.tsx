@@ -60,8 +60,12 @@ const MainComponent = () => {
   
   return (
     <>
-      <div className='h-[650px] w-[500px] rounded border border-[#1f1f1f]'>
-        <div className='h-[80px] flex justify-center items-center border-b border-[#1f1f1f]'>
+      <div className='h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l md:border-[#1f1f1f]'>
+      <div className="h-[100px] w-[100px] rounded-full bg-indigo-500 absolute left-[33%] top-[75%] blur-3xl opacity-0 2xl:opacity-50"></div>
+      <div className="h-[125px] w-[125px] rounded-full bg-indigo-700 absolute right-[33%] top-[8%] blur-3xl opacity-0 2xl:opacity-50"></div>
+
+
+      <div className='h-[80px] flex justify-center items-center rounded-t border-t border-b border-[#1f1f1f]'>
           <Header />
         </div>
         <div className='h-[490px] flex justify-center items-center gap-4 flex-col'>
@@ -85,9 +89,11 @@ const MainComponent = () => {
             options={optionsSzint}
             onValueChange={setSzint}
           />
-          <ButtonComponent onClick={handleSearch} title="Keresés" disabled={isDisabled} icon={<Search className="mr-2 size-5"/>}/>
+          <div className='mt-6'>
+            <ButtonComponent onClick={handleSearch} title="Keresés" disabled={isDisabled} icon={<Search className="mr-2 size-5"/>}/>
+          </div>
         </div>
-         <div className="h-[80px] border-t border-[#1f1f1f] flex justify-center items-center gap-4">
+         <div className="h-[80px] rounded-b border-b border-t border-[#1f1f1f] flex justify-center items-center gap-4">
             {isTask && urls?.task && (
               <ButtonComponent title="Feladat" onClick={() => window.open(urls.task as string)} disabled={isDisabled} />
             )}
