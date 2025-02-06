@@ -16,10 +16,10 @@ export default {
         darkFocus: "#444444",
       },
       'animation': {
-            'text':'text 5s ease infinite',
+            text: "text 5s ease infinite",
         },
         'keyframes': {
-            'text': {
+            text: {
                 '0%, 100%': {
                    'background-size':'200% 200%',
                     'background-position': 'left center'
@@ -29,6 +29,7 @@ export default {
                     'background-position': 'right center'
                 }
             },
+    
         }
     },
   },
