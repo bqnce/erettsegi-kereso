@@ -42,7 +42,7 @@ const MainComponent = () => {
     setIsAudio(audioAvailable);
     setIsZip(zipAvailable);
   
-    const recentItem = {
+    /*const recentItem = {
       targy: { value: targy, label: optionsTargy.find(o => o.value === targy)?.label },
       ev: { value: ev, label: optionsEv.find(o => o.value === ev)?.label },
       idoszak: { value: idoszak, label: optionsIdoszak.find(o => o.value === idoszak)?.label },
@@ -56,7 +56,7 @@ const MainComponent = () => {
     };
   
     const recentLinks = JSON.parse(localStorage.getItem('recentLinks') || '[]');
-    localStorage.setItem('recentLinks', JSON.stringify([recentItem, ...recentLinks].slice(0, 10)));
+    localStorage.setItem('recentLinks', JSON.stringify([recentItem, ...recentLinks].slice(0, 10)));*/
   };
   
   return (
