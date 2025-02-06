@@ -61,8 +61,8 @@ const MainComponent = () => {
   return (
     <>
       <div className='h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l md:border-[#1f1f1f] overflow-hidden'>
-      <div className="h-[100px] w-[100px] rounded-full bg-indigo-500 absolute left-[33%] top-[75%] blur-3xl opacity-0 2xl:opacity-50"></div>
-      <div className="h-[125px] w-[125px] rounded-full bg-indigo-700 absolute right-[33%] top-[8%] blur-3xl opacity-0 2xl:opacity-50"></div>
+      <div className="h-[100px] w-[100px] rounded-full bg-gradient-to-r from-indigo-500 via-purple-500 to-indigo-500 animate-spin absolute left-[33%] top-[75%] blur-3xl opacity-0 2xl:opacity-75"></div>
+      <div className="h-[125px] w-[125px] rounded-full bg-gradient-to-r from-indigo-700 via-purple-700 to-indigo-700 animate-spin absolute right-[33%] top-[8%] blur-3xl opacity-0 2xl:opacity-75"></div>
 
 
       <div className='h-[80px] flex justify-center items-center rounded-t border-t border-b border-[#1f1f1f]'>
