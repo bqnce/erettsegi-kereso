@@ -1,4 +1,3 @@
-Priority:
 [x] Javítási útmutatók megnyitása
 [x] Hanganyagok megnyitása
 [x] Ikonok hozzáadása
@@ -9,8 +8,8 @@ Priority:
 [x] Megerősítő katt, a zip file letöltésénél
 [x] Selectorok szövegét ne lehessen kijelölni
 [x] Ha kikattintok a selectorból, ne villanjon
+[x] Ha 2025-ösre keres valaki, akkor írja ki hogy nincs fent még
+[x] Más design a gömbök helyett
 [] Eltünési animáció ha kikattintok a Selectorból
-[] Ha 2025-ösre keres valaki, akkor írja ki hogy nincs fent még
 [] Magyar tárgynál a szöveg bentebb van tolódva (fixálni)
 [] Magyar tárgynál kisebb lesz a nyíl ikon (fixálni)
-[] Más design a gömbök helyett
