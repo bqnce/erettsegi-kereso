@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchFile }  from '../utils/fetch';
 import { Search } from 'lucide-react';
 import { generateUrls } from '../utils/generateUrls';
+import { CloudAlert } from 'lucide-react'
 import SelectComponent from "./SelectComponent";
 import ButtonComponent from "./ButtonComponent";
 import Confirmation from './Confirmation';
@@ -94,7 +95,10 @@ const MainComponent = () => {
             {isTask && urls?.task ? (
               <ButtonComponent title="Feladat" onClick={() => window.open(urls.task as string)} disabled={isDisabled} />
             ) : (
-            <span>Jelenleg nincs elérhető link</span>
+            <>
+            <CloudAlert color='#dc2626' />
+            <span className='font-normal bg-gradient-to-r bg-clip-text text-transparent from-red-600 via-red-500 to-red-400 animate-text'>Jelenleg nincs elérhető link</span>
+            </>
             )}
             {isGuide && urls?.guide && (
               <ButtonComponent title="Útmutató" onClick={() => window.open(urls.guide as string)} disabled={isDisabled} />
