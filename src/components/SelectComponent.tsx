@@ -20,10 +20,10 @@ const SelectComponent: React.FC<SelectComponentProps> = ({
   return (
     <>
     <Select onValueChange={onValueChange}>
-      <SelectTrigger className="w-[180px] bg-darkBg border border-darkBorder text-[#dbdbdb] focus:border-darkBorder focus:ring-5 hover:border-[#3f3f3f] transition-all duration-300 select-none">
+      <SelectTrigger className="w-[180px] bg-darkBg border border-darkBorder text-[#dbdbdb] hover:border-[#3f3f3f] focus:ring-0 focus:ring-offset-0 transition-colors duration-300 select-none">
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent className="bg-darkBg text-[#dbdbdb] border border-darkBorder">
+      <SelectContent className="bg-darkBg text-[#dbdbdb] border border-darkBorder ">
         {options.map((option) => (
           <SelectItem
             key={option.value}
