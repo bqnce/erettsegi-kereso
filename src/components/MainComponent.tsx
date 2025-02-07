@@ -4,10 +4,10 @@ import { fetchFile }  from '../utils/fetch';
 import { Search } from 'lucide-react';
 import { generateUrls } from '../utils/generateUrls';
 import { CloudAlert } from 'lucide-react'
-import SelectComponent from "./SelectComponent";
 import ButtonComponent from "./ButtonComponent";
 import Confirmation from './Confirmation';
 import Header from './Header';
+import Combobox from './Combobox'
 import '../App.css';
 
 const MainComponent = () => {
@@ -20,6 +20,7 @@ const MainComponent = () => {
   const [isGuide, setIsGuide] = useState<Boolean>(false);
   const [isAudio, setIsAudio] = useState<Boolean>(false);
   const [isZip, setIsZip] = useState<Boolean>(false);
+  const [isZipUt, setIsZipUt] = useState<Boolean>(false);
 
   const urls = generateUrls(ev, idoszak, szint, targy, honap);
   const isDisabled = !targy || !ev || !idoszak || !szint;
@@ -37,27 +38,13 @@ const MainComponent = () => {
     const guideAvailable = await fetchFile(urls.guide);
     const audioAvailable = await fetchFile(urls.audio);
     const zipAvailable = await fetchFile(urls.zip);
+    const zipUtAvailable = await fetchFile(urls.zipUt);
   
     setIsTask(taskAvailable);
     setIsGuide(guideAvailable);
     setIsAudio(audioAvailable);
     setIsZip(zipAvailable);
-  
-    /*const recentItem = {
-      targy: { value: targy, label: optionsTargy.find(o => o.value === targy)?.label },
-      ev: { value: ev, label: optionsEv.find(o => o.value === ev)?.label },
-      idoszak: { value: idoszak, label: optionsIdoszak.find(o => o.value === idoszak)?.label },
-      szint: { value: szint, label: optionsSzint.find(o => o.value === szint)?.label },
-      links: {
-        task: taskAvailable ? urls.task : null,
-        guide: guideAvailable ? urls.guide : null,
-        audio: audioAvailable ? urls.audio : null,
-        zip: zipAvailable ? urls.zip : null,
-      },
-    };
-  
-    const recentLinks = JSON.parse(localStorage.getItem('recentLinks') || '[]');
-    localStorage.setItem('recentLinks', JSON.stringify([recentItem, ...recentLinks].slice(0, 10)));*/
+    setIsZipUt(zipUtAvailable);
   };
   
   return (
@@ -67,31 +54,15 @@ const MainComponent = () => {
           <Header />
         </div>
         <div className='h-[490px] flex justify-center items-center gap-4 flex-col'>
-          <SelectComponent
-            placeholder="Tárgy"
-            options={optionsTargy}
-            onValueChange={setTargy}
-          />
-          <SelectComponent
-            placeholder="Év"
-            options={optionsEv}
-            onValueChange={setEv}
-          />
-          <SelectComponent
-            placeholder="Időszak"
-            options={optionsIdoszak}
-            onValueChange={setIdoszak}
-          />
-          <SelectComponent
-            placeholder="Szint"
-            options={optionsSzint}
-            onValueChange={setSzint}
-          />
+          <Combobox title="Tárgy" placeholder='Tárgy keresése...' errorMsg="A tárgy nem elérhető" options={optionsTargy} onValueChange={setTargy}/>
+          <Combobox title="Év" placeholder='Év keresése...' errorMsg="Az év nem elérhető" options={optionsEv} onValueChange={setEv}/>
+          <Combobox title="Időszak" placeholder='Időszak keresése...' errorMsg="Az időszak nem elérhető" options={optionsIdoszak} onValueChange={setIdoszak}/>
+          <Combobox title="Szint" placeholder='Szint keresése...' errorMsg="A szint nem elérhető" options={optionsSzint} onValueChange={setSzint}/>
           <div className='mt-6'>
             <ButtonComponent onClick={handleSearch} title="Keresés" disabled={isDisabled} icon={<Search className="mr-2 size-5"/>}/>
           </div>
         </div>
-         <div className="h-[80px] rounded-b border-b border-t border-[#1f1f1f] flex justify-center items-center gap-4">
+         <div className="sm:h-auto lg:h-[80px] p-4 rounded-b border-b border-t border-[#1f1f1f] flex justify-center items-center gap-3 flex-wrap">
             {isTask && urls?.task ? (
               <ButtonComponent title="Feladat" onClick={() => window.open(urls.task as string)} disabled={isDisabled} />
             ) : (
@@ -107,7 +78,10 @@ const MainComponent = () => {
               <ButtonComponent title="Hanganyag" onClick={() => window.open(urls.audio as string)} disabled={isDisabled} />
             )}
             {isZip && urls?.zip && (
-            <Confirmation title="Segédlet" onClick={() => window.open(urls.zip as string)} disabled={isDisabled} fileName={urls.zip}/> 
+            <Confirmation title="Forrás" onClick={() => window.open(urls.zip as string)} disabled={isDisabled} fileName={urls.zip}/> 
+            )}
+            {isZipUt && urls?.zipUt && (
+            <Confirmation title="Megoldás" onClick={() => window.open(urls.zipUt as string)} disabled={isDisabled} fileName={urls.zipUt}/> 
             )}
         </div>
       </div>

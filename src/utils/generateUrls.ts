@@ -6,5 +6,6 @@ export const generateUrls = (ev: string, idoszak: string, szint: string, targy: 
       guide: `${basePath}/${szint.substring(0, 1)}_${targy}_${ev.substring(2, 4)}${honap}_ut.pdf`,
       audio: `${basePath}/${szint.substring(0, 1)}_${targy}_${ev.substring(2, 4)}${honap}_fl.mp3`,
       zip: `${basePath}/${szint.substring(0, 1)}_${targy}for_${ev.substring(2, 4)}${honap}_fl.zip`,
+      zipUt: `${basePath}/${szint.substring(0, 1)}_${targy}meg_${ev.substring(2, 4)}${honap}_ut.zip`,
     };
 };

@@ -28,7 +28,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className={`border border-[#1f1f1f] p-2 rounded hover:border-[#3f3f3f] transition-all duration-300 flex ${disabled ? "flex opacity-50 cursor-not-allowed" : ""}`} >{title}</button>
+        <button className={`border border-[#1f1f1f] p-2 rounded hover:bg-[#090909] transition-all duration-300 flex ${disabled ? "flex opacity-50 cursor-not-allowed" : ""}`} >{title}</button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] bg-[#030303] text-[#dbdbdb] border-[#141414] shadow-[#040404] w-[330px]">
         <DialogHeader>
@@ -38,8 +38,8 @@ const ButtonComponent: React.FC<ButtonProps> = ({
           </DialogTitle>
           <br />
           <DialogDescription>
-            Kérlek erősítsd meg, hogy le szeretnéd tölteni a segédletet!
-            ({fileName.split('/').pop()})
+            Kérlek erősítsd meg, hogy le szeretnéd tölteni a következő fájlt: 
+            <span className="font-medium mt-4"> {fileName.split('/').pop()}</span>
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>

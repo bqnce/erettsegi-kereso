@@ -13,3 +13,4 @@
 [] Eltünési animáció ha kikattintok a Selectorból
 [] Magyar tárgynál a szöveg bentebb van tolódva (fixálni)
 [] Magyar tárgynál kisebb lesz a nyíl ikon (fixálni)
+[] Light mode

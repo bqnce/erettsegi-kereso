@@ -1,5 +1,5 @@
 export const optionsTargy = [
-    { value: "magyir", label: "Magyar nyelv és irodalom" },
+    { value: "magyir", label: "Magyar irodalom" },
     { value: "mat", label: "Matematika" },
     { value: "tort", label: "Történelem" },
     { value: "angol", label: "Angol nyelv" },
