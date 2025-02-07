@@ -28,7 +28,7 @@ const SelectComponent: React.FC<SelectComponentProps> = ({
           <SelectItem
             key={option.value}
             value={option.value}
-            className="hover:text-[#dbdbdb] focus:bg-[#090909] focus:text-[#dbdbdb]"
+            className="hover:text-[#dbdbdb] focus:bg-[#090909] focus:text-[#dbdbdb] cursor-pointer"
           >
             {option.label}
           </SelectItem>
