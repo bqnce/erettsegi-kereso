@@ -94,9 +94,11 @@ const MainComponent = () => {
           </div>
         </div>
          <div className="h-[80px] rounded-b border-b border-t border-[#1f1f1f] flex justify-center items-center gap-4">
-            {isTask && urls?.task && (
+            {isTask && urls?.task ? (
               <ButtonComponent title="Feladat" onClick={() => window.open(urls.task as string)} disabled={isDisabled} />
-            )}
+            ) : (
+            <span>Jelenleg nincs elérhető link</span>
+            )}
             {isGuide && urls?.guide && (
               <ButtonComponent title="Útmutató" onClick={() => window.open(urls.guide as string)} disabled={isDisabled} />
             )}
