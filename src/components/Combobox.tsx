@@ -37,61 +37,61 @@ const Combobox: React.FC<ComboboxProps> = ({
 
   }) => {
     const [open, setOpen] = React.useState(false)
-  const [value, setValue] = React.useState("")
+    const [value, setValue] = React.useState("")
 
-  return (
-    <Popover open={open} onOpenChange={setOpen}>
-        
-      <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          role="combobox"
-          aria-expanded={open}
-          className="w-[200px] justify-between bg-[#070707] border border-[#1f1f1f] hover:bg-[#090909] hover:text-[#dbdbdb]"
-        >
-        <span className="font-normal">
-          {value
-            ? options.find((option) => option.value === value)?.label
-            : (title)}
-        </span>
-          <ChevronsUpDown className="opacity-50" />
-        </Button>
-      </PopoverTrigger>
+    return (
+      <Popover open={open} onOpenChange={setOpen}>
+          
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={open}
+            className="w-[200px] justify-between bg-[#070707] border border-[#1f1f1f] hover:bg-[#090909] hover:text-[#dbdbdb]"
+          >
+          <span className="font-normal">
+            {value
+              ? options.find((option) => option.value === value)?.label
+              : (title)}
+          </span>
+            <ChevronsUpDown className="opacity-50" />
+          </Button>
+        </PopoverTrigger>
 
-      <PopoverContent className="w-[200px] p-0 border border-[#2f2f2f] bg-transparent">
-        <Command className="bg-[#070707] text-[#dbdbdb]">
+        <PopoverContent className="w-[200px] p-0 border border-[#2f2f2f] bg-transparent">
+          <Command className="bg-[#070707] text-[#dbdbdb]">
 
-          <CommandInput placeholder={placeholder} />
+            <CommandInput placeholder={placeholder} />
 
-          <CommandList className="overflow-y-auto custom-scrollbar">
-            <CommandEmpty>{errorMsg}</CommandEmpty>
-            <CommandGroup>
-              {options.map((option) => (
-                <CommandItem
-                  key={option.value}
-                  value={option.value}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue)
-                    setOpen(false)
-                    onValueChange(currentValue)
-                  }}
-                  className="text-[#dbdbdb] cursor-pointer data-[selected=true]:bg-[#141414] data-[selected=true]:text-[#dbdbdb]"
-                >
-                  {option.label}
-                  <Check
-                    className={cn(
-                      "ml-auto",
-                      value === option.value ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </PopoverContent>
-    </Popover>
-  )
+            <CommandList className="overflow-y-auto custom-scrollbar">
+              <CommandEmpty>{errorMsg}</CommandEmpty>
+              <CommandGroup>
+                {options.map((option) => (
+                  <CommandItem
+                    key={option.value}
+                    value={option.value}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? "" : currentValue)
+                      setOpen(false)
+                      onValueChange(currentValue)
+                    }}
+                    className="text-[#dbdbdb] cursor-pointer data-[selected=true]:bg-[#141414] data-[selected=true]:text-[#dbdbdb]"
+                  >
+                    {option.label}
+                    <Check
+                      className={cn(
+                        "ml-auto",
+                        value === option.value ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </CommandList>
+          </Command>
+        </PopoverContent>
+      </Popover>
+    )
 };
 
 export default Combobox;  

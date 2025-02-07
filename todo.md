@@ -10,7 +10,8 @@
 [x] Ha kikattintok a selectorból, ne villanjon
 [x] Ha 2025-ösre keres valaki, akkor írja ki hogy nincs fent még
 [x] Más design a gömbök helyett
-[] Eltünési animáció ha kikattintok a Selectorból
-[] Magyar tárgynál a szöveg bentebb van tolódva (fixálni)
-[] Magyar tárgynál kisebb lesz a nyíl ikon (fixálni)
+[x] Eltünési animáció ha kikattintok a Selectorból
+[x] Magyar tárgynál a szöveg bentebb van tolódva (fixálni)
+[x] Magyar tárgynál kisebb lesz a nyíl ikon (fixálni)
+[] Randomizáló gomb
 [] Light mode
