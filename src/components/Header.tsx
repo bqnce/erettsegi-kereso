@@ -1,6 +1,6 @@
 const Header = () => {
     return(
-      <span className="text-xl font-medium bg-gradient-to-r bg-clip-text text-transparent from-indigo-500 via-purple-500 to-indigo-500 animate-text">
+      <span className="text-xl font-medium bg-gradient-to-r bg-clip-text text-transparent from-yellow-600 via-orange-200 to-yellow-400 animate-text">
       Érettségi Kereső
     </span>
 
