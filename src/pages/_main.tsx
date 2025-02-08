@@ -4,10 +4,10 @@ import { fetchFile }  from '../utils/fetch';
 import { Search } from 'lucide-react';
 import { generateUrls } from '../utils/generateUrls';
 import { CloudAlert } from 'lucide-react'
-import ButtonComponent from "./ButtonComponent";
-import Confirmation from './Confirmation';
-import Header from './Header';
-import Combobox from './Combobox'
+import ButtonComponent from "../components/Button";
+import Confirmation from '../components/Confirmation';
+import Header from '../components/Header';
+import Combobox from '../components/Combobox'
 import '../App.css';
 
 const MainComponent = () => {

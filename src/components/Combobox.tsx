@@ -58,10 +58,10 @@ const Combobox: React.FC<ComboboxProps> = ({
           </Button>
         </PopoverTrigger>
 
-        <PopoverContent className="w-[200px] p-0 border border-[#2f2f2f] bg-transparent">
+        <PopoverContent className="w-[200px] p-0 border border-[#1f1f1f] bg-transparent">
           <Command className="bg-[#070707] text-[#dbdbdb]">
 
-            <CommandInput placeholder={placeholder} />
+            {/*<CommandInput placeholder={placeholder} />*/}
 
             <CommandList className="overflow-y-auto custom-scrollbar">
               <CommandEmpty>{errorMsg}</CommandEmpty>
@@ -75,7 +75,7 @@ const Combobox: React.FC<ComboboxProps> = ({
                       setOpen(false)
                       onValueChange(currentValue)
                     }}
-                    className="text-[#dbdbdb] cursor-pointer data-[selected=true]:bg-[#141414] data-[selected=true]:text-[#dbdbdb]"
+                    className="text-[#dbdbdb] cursor-pointer data-[selected=true]:bg-[#111111] data-[selected=true]:text-[#dbdbdb]"
                   >
                     {option.label}
                     <Check

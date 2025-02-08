@@ -1,5 +1,5 @@
 import "./App.css";
-import MainComponent from "./components/MainComponent";
+import MainComponent from "./pages/_main";
 import { Analytics } from "@vercel/analytics/react"
 
 
