@@ -1,23 +1,30 @@
-Tasks:
-[] Randomizáló gomb
-[] Light mode
+# Érettségi Kereső - 2025
 
-Done:
-[x] Javítási útmutatók megnyitása
-[x] Hanganyagok megnyitása
-[x] Ikonok hozzáadása
-[x] Keresés gomb - utána jelenjenek meg a feladatlap, utmutato, hanganyag, .zip file gombok
-[x] Vercel probléma megoldása (api - proxy nem működik)
-[x] Domain setup
-[x] Cleanebb design
-[x] Reszponzivitás
-[x] Megerősítő katt, a zip file letöltésénél
-[x] Selectorok szövegét ne lehessen kijelölni
-[x] Ha kikattintok a selectorból, ne villanjon
-[x] Ha 2025-ösre keres valaki, akkor írja ki hogy nincs fent még
-[x] Más design a gömbök helyett
-[x] Eltünési animáció ha kikattintok a Selectorból
-[x] Magyar tárgynál a szöveg bentebb van tolódva (fixálni)
-[x] Magyar tárgynál kisebb lesz a nyíl ikon (fixálni)
-[x] Olvashatóbb file structure
-[x] Interface használata type helyett
+Az Érettségi Kereső egy nyílt forráskódú webalkalmazás, amely lehetővé teszi az érettségi vizsgafeladatok egyszerű és gyors böngészését, valamint letöltését.
+
+## Funkciók
+
+- Érettségi feladatlapok keresése tantárgy, év, időszak és szint szerint.
+- Feladatlapok, javítási útmutatók, hanganyagok megtekintése
+- Digitális kultúrához - források és megoldások letöltése ZIP formátumban.
+
+## Telepítés
+
+1. **Követelmények:**
+   - Node.js (ajánlott verzió: 14.x vagy újabb)
+   - npm vagy yarn csomagkezelő
+
+2. **Lépések:**
+   ### Projekt klónozása
+   ```git clone https://github.com/bqnce/erettsegi-kereso.git```
+   ```cd erettsegi-kereso```
+
+   ## Függőségek telepítése
+   ```npm install```
+   ### vagy
+   ```yarn install```
+
+   ## Fejlesztői szerver indítása
+   ```npm run dev```
+   ### vagy
+   ```yarn dev```
