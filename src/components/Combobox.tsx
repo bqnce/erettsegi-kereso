@@ -1,47 +1,28 @@
 "use client"
-
-import * as React from "react"
 import { Check, ChevronsUpDown } from "lucide-react"
-import '../App.css';
-
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from "@/components/ui/command"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
+import { Command, CommandEmpty, CommandGroup, CommandItem, CommandList } from "@/components/ui/command"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import * as React from "react"
+import '../App.css';
 
-type ComboboxProps = {
+interface ComboboxProps {
     title: string;
     errorMsg: string;
-    placeholder: string
     options: { value: string; label: string }[];
     onValueChange: (value: string) => void;
 };
   
-const Combobox: React.FC<ComboboxProps> = ({
-    title,
-    placeholder,
-    errorMsg,
-    options,
-    onValueChange,
+export default function Combobox({
+  title, errorMsg, options, onValueChange
+}: ComboboxProps): React.ReactNode {
 
-  }) => {
     const [open, setOpen] = React.useState(false)
     const [value, setValue] = React.useState("")
 
     return (
       <Popover open={open} onOpenChange={setOpen}>
-          
         <PopoverTrigger asChild>
           <Button
             variant="outline"
@@ -57,12 +38,8 @@ const Combobox: React.FC<ComboboxProps> = ({
             <ChevronsUpDown className="opacity-50" />
           </Button>
         </PopoverTrigger>
-
         <PopoverContent className="w-[200px] p-0 border border-[#1f1f1f] bg-transparent">
           <Command className="bg-[#070707] text-[#dbdbdb]">
-
-            {/*<CommandInput placeholder={placeholder} />*/}
-
             <CommandList className="overflow-y-auto custom-scrollbar">
               <CommandEmpty>{errorMsg}</CommandEmpty>
               <CommandGroup>
@@ -93,5 +70,3 @@ const Combobox: React.FC<ComboboxProps> = ({
       </Popover>
     )
 };
-
-export default Combobox;  

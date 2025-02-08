@@ -1,17 +1,13 @@
-type ButtonProps = {
+interface ButtonProps {
   onClick: () => void;
   disabled: boolean;
   title: string;
   icon?: React.ReactElement;
 };
 
-const ButtonComponent: React.FC<ButtonProps> = ({
-  onClick,
-  disabled,
-  title,
-  icon
-}) => {
-
+export default function ButtonComponent({
+  onClick, disabled, title, icon
+}: ButtonProps): React.ReactNode {
   return (
     <button
       className={`border border-[#1f1f1f] p-2 rounded hover:bg-[#090909] transition-colors duration-100 active:bg-[#1f1f1f] flex items-center 
@@ -24,5 +20,3 @@ const ButtonComponent: React.FC<ButtonProps> = ({
     </button>
   );
 };
-
-export default ButtonComponent;

@@ -1,29 +1,17 @@
 import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
-
 import { CloudDownload, ShieldAlert } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 
-type ButtonProps = {
+interface ButtonProps {
   onClick: () => void;
   disabled: boolean;
   title: string;
   fileName: string;
 };
 
-const ButtonComponent: React.FC<ButtonProps> = ({
-  onClick,
-  disabled,
-  title,
-  fileName
-}) => {
+export default function ButtonComponent({
+  onClick, disabled, title, fileName
+}: ButtonProps): React.ReactNode {
 
   return (
     <Dialog>
@@ -52,5 +40,3 @@ const ButtonComponent: React.FC<ButtonProps> = ({
     </Dialog>
   );
 };
-
-export default ButtonComponent;

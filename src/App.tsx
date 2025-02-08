@@ -1,7 +1,6 @@
-import "./App.css";
-import MainComponent from "./pages/_main";
 import { Analytics } from "@vercel/analytics/react"
-
+import MainComponent from "./pages/_main";
+import "./App.css";
 
 const App = () => {
   return (

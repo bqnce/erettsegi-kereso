@@ -54,10 +54,10 @@ const MainComponent = () => {
           <Header />
         </div>
         <div className='h-[490px] flex justify-center items-center gap-4 flex-col'>
-          <Combobox title="Tárgy" placeholder='Tárgy keresése...' errorMsg="A tárgy nem elérhető" options={optionsTargy} onValueChange={setTargy}/>
-          <Combobox title="Év" placeholder='Év keresése...' errorMsg="Az év nem elérhető" options={optionsEv} onValueChange={setEv}/>
-          <Combobox title="Időszak" placeholder='Időszak keresése...' errorMsg="Az időszak nem elérhető" options={optionsIdoszak} onValueChange={setIdoszak}/>
-          <Combobox title="Szint" placeholder='Szint keresése...' errorMsg="A szint nem elérhető" options={optionsSzint} onValueChange={setSzint}/>
+          <Combobox title="Tárgy" errorMsg="A tárgy nem elérhető" options={optionsTargy} onValueChange={setTargy}/>
+          <Combobox title="Év" errorMsg="Az év nem elérhető" options={optionsEv} onValueChange={setEv}/>
+          <Combobox title="Időszak" errorMsg="Az időszak nem elérhető" options={optionsIdoszak} onValueChange={setIdoszak}/>
+          <Combobox title="Szint" errorMsg="A szint nem elérhető" options={optionsSzint} onValueChange={setSzint}/>
           <div className='mt-6'>
             <ButtonComponent onClick={handleSearch} title="Keresés" disabled={isDisabled} icon={<Search className="mr-2 size-5"/>}/>
           </div>
