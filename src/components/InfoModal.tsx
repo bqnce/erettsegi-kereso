@@ -1,15 +1,29 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+  } from "@/components/ui/tooltip"
+
 import { Info } from 'lucide-react'
 
 const InfoModal = () => {
 
   return (
     <Dialog>
-        <DialogTrigger asChild>
-            <div className='p-2 rounded-lg border border-[#1f1f1f] hover:bg-[#090909] transition-colors duration-300 cursor-pointer'>
-                <Info />
-            </div>
-        </DialogTrigger>
+        <TooltipProvider>
+            <Tooltip delayDuration={150}>
+                <DialogTrigger asChild>
+                    <TooltipTrigger className='p-2 rounded-lg border border-[#1f1f1f] hover:bg-[#090909] transition-colors duration-300 cursor-pointer'>
+                        <Info />
+                    </TooltipTrigger>
+                </DialogTrigger>
+                <TooltipContent className="bg-[#121212] border border-[#2f2f2f] text-[#dbdbdb] select-none">
+                <p>Információk</p>
+                </TooltipContent>
+            </Tooltip>
+        </TooltipProvider>
         <DialogContent className="bg-[#050505] text-[#dbdbdb] border-[#141414] shadow-[#040404] sm:w-[500px]">
             <DialogHeader>
                 <DialogTitle className="flex flex-row items-center gap-2">
