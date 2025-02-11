@@ -1,7 +1,10 @@
 Tasks:
 [x] Github gomb [02.11]
-[] Tiktok gomb
-[] Info gomb, modallal
+[x] Info gomb, modallal [02.11]
+[x] Tooltip a gombokra [02.11] 
+[] Ha nincs beállítva semmilyen keresés, ne írjon semmit a footerbe
+[] Reszponzivitás a gombok miatt
+[] Instant keresés ha minden Selector ki van töltve
 [] Randomizáló gomb
 [] Light mode
 [] Regisztráció UI

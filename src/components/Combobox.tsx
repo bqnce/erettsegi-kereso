@@ -22,6 +22,7 @@ export default function Combobox({
     const [value, setValue] = React.useState("")
 
     return (
+      
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
@@ -48,9 +49,14 @@ export default function Combobox({
                     key={option.value}
                     value={option.value}
                     onSelect={(currentValue) => {
-                      setValue(currentValue === value ? "" : currentValue)
+                      if(currentValue !== value){
+                        setValue(currentValue)
+                        setOpen(false)
+                        onValueChange(currentValue)
+                      }
+                      {/*setValue(currentValue === value ? "" : currentValue)
                       setOpen(false)
-                      onValueChange(currentValue)
+                      onValueChange(currentValue)*/}
                     }}
                     className="text-[#dbdbdb] cursor-pointer data-[selected=true]:bg-[#111111] data-[selected=true]:text-[#dbdbdb]"
                   >
