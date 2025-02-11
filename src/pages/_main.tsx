@@ -1,14 +1,16 @@
-import { optionsTargy, optionsEv, optionsSzint, optionsIdoszak } from '../utils/options';
-import { useEffect, useState } from "react";
-import { fetchFile }  from '../utils/fetch';
-import { Search, Github } from 'lucide-react';
-import { generateUrls } from '../utils/generateUrls';
+import { optionsTargy, optionsEv, optionsSzint, optionsIdoszak } from '../utils/options'
+import { useEffect, useState } from "react"
+import { fetchFile }  from '../utils/fetch'
+import { Search } from 'lucide-react'
+import { generateUrls } from '../utils/generateUrls'
 import { CloudAlert } from 'lucide-react'
-import ButtonComponent from "../components/Button";
-import Confirmation from '../components/Confirmation';
-import Header from '../components/Header';
+import ButtonComponent from "../components/Button"
+import Confirmation from '../components/Confirmation'
+import Header from '../components/Header'
 import Combobox from '../components/Combobox'
-import '../App.css';
+import GithubB from '../components/GithubB'
+import '../App.css'
+import InfoModal from '@/components/InfoModal'
 
 const MainComponent = () => {
   const [targy, setTargy] = useState<string>("");
@@ -47,9 +49,6 @@ const MainComponent = () => {
     setIsZipUt(zipUtAvailable);
   };
 
-  const openGithub = () => {
-    window.open("https://github.com/bqnce/erettsegi-kereso")
-  }
   
   return (
     <>
@@ -89,8 +88,9 @@ const MainComponent = () => {
               )}
           </div>
       </div>
-      <div className='p-2 rounded-lg border border-[#1f1f1f] hover:bg-[#090909] transition-colors duration-300 cursor-pointer absolute bottom-5' onClick={openGithub}>
-        <Github />
+      <div className='absolute bottom-5 flex gap-3'>
+        <GithubB />
+        <InfoModal />
       </div>
     </>
   );

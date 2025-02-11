@@ -1,6 +1,7 @@
 Tasks:
 [x] Github gomb [02.11]
 [] Tiktok gomb
+[] Info gomb, modallal
 [] Randomizáló gomb
 [] Light mode
 [] Regisztráció UI
