@@ -89,7 +89,7 @@ const MainComponent = () => {
               )}
           </div>
       </div>
-      <div className='p-2 rounded-lg border border-[#1f1f1f] hover:bg-[#1f1f1f] transition-colors duration-300 cursor-pointer absolute bottom-5' onClick={openGithub}>
+      <div className='p-2 rounded-lg border border-[#1f1f1f] hover:bg-[#090909] transition-colors duration-300 cursor-pointer absolute bottom-5' onClick={openGithub}>
         <Github />
       </div>
     </>

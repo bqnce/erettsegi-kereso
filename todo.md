@@ -1,5 +1,5 @@
 Tasks:
-[] Github gomb
+[x] Github gomb [02.11]
 [] Tiktok gomb
 [] Randomizáló gomb
 [] Light mode
