@@ -1,6 +1,20 @@
 Tasks:
+[] Github gomb
+[] Tiktok gomb
 [] Randomizáló gomb
 [] Light mode
+[] Regisztráció UI
+[] Regisztráció UI - Reszponzivitás
+[] Bejelentkezés UI
+[] Bejelentkezés UI - Reszponzivitás
+[] Regisztráció backend
+[] Bejelentkezés backend
+[] Megerősítő email UI
+[] Megerősítő email UI - Reszpozivitás
+[] Megerősítő email backend
+[] Basic dashboard
+[] Kedvencek lista
+[] Előzőleg megnyitott érettségik listája
 
 Done:
 [x] Javítási útmutatók megnyitása
