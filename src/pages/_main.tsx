@@ -10,6 +10,7 @@ import GithubB from '@/components/GithubB'
 import InfoModal from '@/components/InfoModal'
 import ErrorFooter from '@/components/ErrorFooter'
 import '@/App.css'
+import { Sun, Moon } from 'lucide-react'
 
 const MainComponent = () => {
   const [targy, setTargy] = useState<string>("");
@@ -23,6 +24,7 @@ const MainComponent = () => {
   const [isZip, setIsZip] = useState<Boolean>(false);
   const [isZipUt, setIsZipUt] = useState<Boolean>(false);
   const [errormsg, setErrormsg] = useState<Boolean>(false);
+  const [mode, setMode] = useState<string>("dark");
 
   const urls = generateUrls(ev, idoszak, szint, targy, honap);
   const isDisabled = !targy || !ev || !idoszak || !szint;
@@ -62,9 +64,19 @@ const MainComponent = () => {
 
   };
 
+  const handleModes = () => {
+    if(mode == "dark") {
+      setMode("light");
+      console.log(mode);
+    } else {
+      setMode("dark");
+      console.log(mode);
+    }
+  }
+
   return (
     <>
-      <div className='h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l md:border-[#1f1f1f] overflow-hidden'>
+      <div className={`h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l md:border-[#1f1f1f] overflow-hidden`}>
           <Header />
           <section className='h-[490px] flex justify-center items-center gap-4 flex-col'>
               <Combobox title="Tárgy" errorMsg="A tárgy nem elérhető" options={optionsTargy} onValueChange={setTargy}/>
@@ -74,6 +86,9 @@ const MainComponent = () => {
               <div className='flex gap-3'>
                 <GithubB />
                 <InfoModal />
+                <div className="p-2 rounded-lg border border-[#1f1f1f] hover:bg-[#090909] transition-colors duration-300 cursor-pointer" onClick={handleModes}>
+                  {mode == "dark" ? <Sun /> : <Moon />}
+                </div>
               </div>
           </section>
            <footer className="sm:h-auto lg:h-[80px] p-4 rounded-b border-b border-t border-[#1f1f1f] flex justify-center items-center gap-3 flex-wrap">
