@@ -100,7 +100,7 @@ const MainComponent = () => {
 
           </footer>
       </div>
-      <div className='absolute bottom-5 flex gap-3'>
+      <div className='absolute top-5 left-5 flex gap-3'>
         <GithubB />
         <InfoModal />
       </div>
