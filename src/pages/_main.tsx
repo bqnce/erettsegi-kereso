@@ -67,10 +67,14 @@ const MainComponent = () => {
       <div className='h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l md:border-[#1f1f1f] overflow-hidden'>
           <Header />
           <section className='h-[490px] flex justify-center items-center gap-4 flex-col'>
-            <Combobox title="Tárgy" errorMsg="A tárgy nem elérhető" options={optionsTargy} onValueChange={setTargy}/>
-            <Combobox title="Év" errorMsg="Az év nem elérhető" options={optionsEv} onValueChange={setEv}/>
-            <Combobox title="Időszak" errorMsg="Az időszak nem elérhető" options={optionsIdoszak} onValueChange={setIdoszak}/>
-            <Combobox title="Szint" errorMsg="A szint nem elérhető" options={optionsSzint} onValueChange={setSzint}/>
+              <Combobox title="Tárgy" errorMsg="A tárgy nem elérhető" options={optionsTargy} onValueChange={setTargy}/>
+              <Combobox title="Év" errorMsg="Az év nem elérhető" options={optionsEv} onValueChange={setEv}/>
+              <Combobox title="Időszak" errorMsg="Az időszak nem elérhető" options={optionsIdoszak} onValueChange={setIdoszak}/>
+              <Combobox title="Szint" errorMsg="A szint nem elérhető" options={optionsSzint} onValueChange={setSzint}/>
+              <div className='flex gap-3'>
+                <GithubB />
+                <InfoModal />
+              </div>
           </section>
            <footer className="sm:h-auto lg:h-[80px] p-4 rounded-b border-b border-t border-[#1f1f1f] flex justify-center items-center gap-3 flex-wrap">
              
@@ -99,10 +103,6 @@ const MainComponent = () => {
               )}
 
           </footer>
-      </div>
-      <div className='absolute top-5 left-5 flex gap-3'>
-        <GithubB />
-        <InfoModal />
       </div>
     </>
   );
