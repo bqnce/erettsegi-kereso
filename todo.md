@@ -5,8 +5,8 @@ Tasks:
 [x] Ha nincs beállítva semmilyen keresés, ne írjon semmit a footerbe [02.11]
 [x] Reszponzivitás a gombok miatt [02.11]
 [x] Instant keresés ha minden Selector ki van töltve [02.11]
+[] Light mode (https://www.youtube.com/watch?v=vIBKSmWAdIA)
 [] Randomizáló gomb
-[] Light mode
 [] Regisztráció UI
 [] Regisztráció UI - Reszponzivitás
 [] Bejelentkezés UI

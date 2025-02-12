@@ -18,12 +18,12 @@ const MainComponent = () => {
   const [szint, setSzint] = useState<string>("");
   const [idoszak, setIdoszak] = useState<string>("");
   const [honap, setHonap] = useState<string>("");
-  const [isTask, setIsTask] = useState<Boolean>(false);
-  const [isGuide, setIsGuide] = useState<Boolean>(false);
-  const [isAudio, setIsAudio] = useState<Boolean>(false);
-  const [isZip, setIsZip] = useState<Boolean>(false);
-  const [isZipUt, setIsZipUt] = useState<Boolean>(false);
-  const [errormsg, setErrormsg] = useState<Boolean>(false);
+  const [isTask, setIsTask] = useState<boolean>(false);
+  const [isGuide, setIsGuide] = useState<boolean>(false);
+  const [isAudio, setIsAudio] = useState<boolean>(false);
+  const [isZip, setIsZip] = useState<boolean>(false);
+  const [isZipUt, setIsZipUt] = useState<boolean>(false);
+  const [errormsg, setErrormsg] = useState<boolean>(false);
   const [mode, setMode] = useState<string>("dark");
 
   const urls = generateUrls(ev, idoszak, szint, targy, honap);
