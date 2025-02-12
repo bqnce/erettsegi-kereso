@@ -12,7 +12,7 @@ interface ComboboxProps {
     errorMsg: string;
     options: { value: string; label: string }[];
     onValueChange: (value: string) => void;
-};
+}
   
 export default function Combobox({
   title, errorMsg, options, onValueChange
