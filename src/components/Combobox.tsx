@@ -28,9 +28,9 @@ export default function Combobox({
             variant="outline"
             role="combobox"
             aria-expanded={open}
-            className="w-[200px] justify-between bg-[#070707] border border-[#1f1f1f] hover:bg-[#090909] hover:text-[#dbdbdb]"
+            className="w-[200px] justify-between bg-[#070707] border border-[#1f1f1f] hover:bg-[#090909] hover:text-[#dbdbdb] select-none"
           >
-          <span className="font-normal">
+          <span className="font-normal select-none">
             {value
               ? options.find((option) => option.value === value)?.label
               : (title)}

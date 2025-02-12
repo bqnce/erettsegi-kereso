@@ -39,7 +39,8 @@ const MainComponent = () => {
 
   useEffect(() => {
     if(targy && ev && idoszak && szint) {
-      handleSearch();
+      handleSearch().then(() => console.log("Search completed"))
+                    .catch((err) => console.log(err));
     }
   }, [targy, ev, idoszak, szint])
 
