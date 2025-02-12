@@ -49,7 +49,7 @@ const MainComponent = () => {
     const audioAvailable = await fetchFile(urls.audio);
     const zipAvailable = await fetchFile(urls.zip);
     const zipUtAvailable = await fetchFile(urls.zipUt);
-  
+
     setIsTask(taskAvailable);
     setIsGuide(guideAvailable);
     setIsAudio(audioAvailable);
@@ -61,7 +61,6 @@ const MainComponent = () => {
     } else {
       setErrormsg(false);
     }
-
   };
 
   const handleModes = () => {
