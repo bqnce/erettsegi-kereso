@@ -91,33 +91,14 @@ const MainComponent = () => {
                 </div>
               </div>
           </section>
-           <footer className="sm:h-auto lg:h-[80px] p-4 rounded-b border-b border-t border-[#1f1f1f] flex justify-center items-center gap-3 flex-wrap">
-             
-              {isTask && urls?.task && (
-                <ButtonComponent title="Feladat" onClick={() => window.open(urls.task as string)} disabled={isDisabled} />
-              )}
-
-              {isGuide && urls?.guide && (
-                <ButtonComponent title="Útmutató" onClick={() => window.open(urls.guide as string)} disabled={isDisabled} />
-              )}
-
-              {isAudio && urls?.audio && (
-                <ButtonComponent title="Hanganyag" onClick={() => window.open(urls.audio as string)} disabled={isDisabled} />
-              )}
-
-              {isZip && urls?.zip && (
-              <Confirmation title="Forrás" onClick={() => window.open(urls.zip as string)} disabled={isDisabled} fileName={urls.zip}/> 
-              )}
-
-              {isZipUt && urls?.zipUt && (
-              <Confirmation title="Megoldás" onClick={() => window.open(urls.zipUt as string)} disabled={isDisabled} fileName={urls.zipUt}/> 
-              )}
-
-              {errormsg && (
-                <ErrorFooter />
-              )}
-
-          </footer>
+          <footer className="sm:h-auto lg:h-[80px] p-4 rounded-b border-b border-t border-[#1f1f1f] flex justify-center items-center gap-3 flex-wrap">
+             {isTask && urls?.task && (<ButtonComponent title="Feladat" onClick={() => window.open(urls.task as string)} disabled={isDisabled} />)}
+             {isGuide && urls?.guide && (<ButtonComponent title="Útmutató" onClick={() => window.open(urls.guide as string)} disabled={isDisabled} />)}
+             {isAudio && urls?.audio && (<ButtonComponent title="Hanganyag" onClick={() => window.open(urls.audio as string)} disabled={isDisabled} />)}
+             {isZip && urls?.zip && (<Confirmation title="Forrás" onClick={() => window.open(urls.zip as string)} disabled={isDisabled} fileName={urls.zip}/>)}
+             {isZipUt && urls?.zipUt && (<Confirmation title="Megoldás" onClick={() => window.open(urls.zipUt as string)} disabled={isDisabled} fileName={urls.zipUt}/>)}
+             {errormsg && (<ErrorFooter />)}
+          </footer>
       </div>
     </>
   );
