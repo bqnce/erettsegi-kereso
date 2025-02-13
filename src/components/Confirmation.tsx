@@ -5,20 +5,21 @@ import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, D
 interface ButtonProps {
   onClick: () => void;
   disabled: boolean;
+  darkMode: boolean;
   title: string;
   fileName: string;
-};
+}
 
 export default function ButtonComponent({
-  onClick, disabled, title, fileName
+  onClick, disabled, title, fileName, darkMode
 }: ButtonProps): React.ReactNode {
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className={`border border-[#1f1f1f] p-2 rounded hover:bg-[#090909] transition-all duration-300 flex ${disabled ? "flex opacity-50 cursor-not-allowed" : ""}`} >{title}</button>
+        <button className={`border p-2 rounded transition-all duration-300 flex ${disabled ? "flex opacity-50 cursor-not-allowed" : ""} ${darkMode ? "border-[#1f1f1f] hover:bg-[#090909]" : "border-[#9f9f9f] hover:bg-[#979797] text-[#070707]"}`} >{title}</button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-[#030303] text-[#dbdbdb] border-[#141414] shadow-[#040404] w-[330px]">
+      <DialogContent className={`sm:max-w-[425px] w-[330px] ${darkMode ? "bg-[#050505] text-[#dbdbdb] border-[#141414] shadow-[#040404]": "bg-[#f1f1f1] text-[#050505] shadow-[#f1f1f1]"}`}>
         <DialogHeader>
           <DialogTitle className="flex flex-row items-center gap-2">
             <ShieldAlert color="#e74c3c"/>
@@ -31,12 +32,12 @@ export default function ButtonComponent({
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button type="submit" className="bg-[#090909] hover:bg-[#101010]" onClick={onClick}>
-            <CloudDownload color="#2ecc71" className="mr-1"/>
+          <Button type="submit" className={`${darkMode? "bg-[#090909] hover:bg-[#101010]": "bg-[#dbdbdb] hover-[#cdcdcd] text-[#050505]"}`} onClick={onClick}>
+            <CloudDownload color={`${darkMode ? "#2ecc71": "#008e3c"}`} className="mr-1"/>
             Letöltés
           </Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}

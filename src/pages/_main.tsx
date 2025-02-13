@@ -24,7 +24,9 @@ const MainComponent = () => {
   const [isZip, setIsZip] = useState<boolean>(false);
   const [isZipUt, setIsZipUt] = useState<boolean>(false);
   const [errormsg, setErrormsg] = useState<boolean>(false);
-  const [mode, setMode] = useState<string>("dark");
+  const [darkMode, setDarkMode] = useState<boolean>(() => {
+    return localStorage.getItem("theme") === "dark"
+  });
 
   const urls = generateUrls(ev, idoszak, szint, targy, honap);
   const isDisabled = !targy || !ev || !idoszak || !szint;
@@ -65,38 +67,42 @@ const MainComponent = () => {
   };
 
   const handleModes = () => {
-    if(mode == "dark") {
-      setMode("light");
-      console.log(mode);
-    } else {
-      setMode("dark");
-      console.log(mode);
-    }
+    setDarkMode(!darkMode);
   }
+
+  useEffect(() => {
+    if(darkMode) {
+      localStorage.setItem("theme", "dark");
+      document.body.style.backgroundColor = darkMode ? "#070707" : "#ffffff";
+    } else {
+      localStorage.setItem("theme", "light");
+      document.body.style.backgroundColor = darkMode ? "#070707" : "#ffffff";
+    }
+  }, [darkMode]);
 
   return (
     <>
-      <div className={`h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l md:border-[#1f1f1f] overflow-hidden`}>
-          <Header />
+      <div className={`h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l  overflow-hidden ${darkMode ? "md:border-[#1f1f1f]" : "md:border-[#b5b5b5]"}`}>
+          <Header darkMode={darkMode} />
           <section className='h-[490px] flex justify-center items-center gap-4 flex-col'>
-              <Combobox title="Tárgy" errorMsg="A tárgy nem elérhető" options={optionsTargy} onValueChange={setTargy}/>
-              <Combobox title="Év" errorMsg="Az év nem elérhető" options={optionsEv} onValueChange={setEv}/>
-              <Combobox title="Időszak" errorMsg="Az időszak nem elérhető" options={optionsIdoszak} onValueChange={setIdoszak}/>
-              <Combobox title="Szint" errorMsg="A szint nem elérhető" options={optionsSzint} onValueChange={setSzint}/>
+              <Combobox title="Tárgy" errorMsg="A tárgy nem elérhető" options={optionsTargy} onValueChange={setTargy} darkMode={darkMode} />
+              <Combobox title="Év" errorMsg="Az év nem elérhető" options={optionsEv} onValueChange={setEv} darkMode={darkMode} />
+              <Combobox title="Időszak" errorMsg="Az időszak nem elérhető" options={optionsIdoszak} onValueChange={setIdoszak} darkMode={darkMode} />
+              <Combobox title="Szint" errorMsg="A szint nem elérhető" options={optionsSzint} onValueChange={setSzint} darkMode={darkMode} />
               <div className='flex gap-3'>
-                <GithubB />
-                <InfoModal />
-                <div className="p-2 rounded-lg border border-[#1f1f1f] hover:bg-[#090909] transition-colors duration-300 cursor-pointer" onClick={handleModes}>
-                  {mode == "dark" ? <Sun /> : <Moon />}
+                <GithubB darkMode={darkMode}/>
+                <InfoModal darkMode={darkMode}/>
+                <div className={`p-2 rounded-lg border  transition-colors duration-300 cursor-pointer ${darkMode ? "border-[#1f1f1f] hover:bg-[#090909]" : "border-[#dcdcdc] hover:bg-[#eeeeee]"}`} onClick={handleModes}>
+                  {darkMode ? <Sun color={darkMode ? "#dbdbdb" : "#090909"} /> : <Moon color={darkMode ? "#dbdbdb" : "#090909"} />}
                 </div>
               </div>
           </section>
-          <footer className="sm:h-auto lg:h-[80px] p-4 rounded-b border-b border-t border-[#1f1f1f] flex justify-center items-center gap-3 flex-wrap">
-             {isTask && urls?.task && (<ButtonComponent title="Feladat" onClick={() => window.open(urls.task as string)} disabled={isDisabled} />)}
-             {isGuide && urls?.guide && (<ButtonComponent title="Útmutató" onClick={() => window.open(urls.guide as string)} disabled={isDisabled} />)}
-             {isAudio && urls?.audio && (<ButtonComponent title="Hanganyag" onClick={() => window.open(urls.audio as string)} disabled={isDisabled} />)}
-             {isZip && urls?.zip && (<Confirmation title="Forrás" onClick={() => window.open(urls.zip as string)} disabled={isDisabled} fileName={urls.zip}/>)}
-             {isZipUt && urls?.zipUt && (<Confirmation title="Megoldás" onClick={() => window.open(urls.zipUt as string)} disabled={isDisabled} fileName={urls.zipUt}/>)}
+          <footer className={`sm:h-auto lg:h-[80px] p-4 rounded-b border-b border-t flex justify-center items-center gap-3 flex-wrap ${darkMode ? "border-[#1f1f1f]" : "border-[#b5b5b5]"}`}>
+             {isTask && urls?.task && (<ButtonComponent title="Feladat" onClick={() => window.open(urls.task as string)} disabled={isDisabled} darkMode={darkMode} />)}
+             {isGuide && urls?.guide && (<ButtonComponent title="Útmutató" onClick={() => window.open(urls.guide as string)} disabled={isDisabled} darkMode={darkMode} />)}
+             {isAudio && urls?.audio && (<ButtonComponent title="Hanganyag" onClick={() => window.open(urls.audio as string)} disabled={isDisabled} darkMode={darkMode} />)}
+             {isZip && urls?.zip && (<Confirmation title="Forrás" onClick={() => window.open(urls.zip as string)} disabled={isDisabled} fileName={urls.zip} darkMode={darkMode} />)}
+             {isZipUt && urls?.zipUt && (<Confirmation title="Megoldás" onClick={() => window.open(urls.zipUt as string)} disabled={isDisabled} fileName={urls.zipUt} darkMode={darkMode} />)}
              {errormsg && (<ErrorFooter />)}
           </footer>
       </div>

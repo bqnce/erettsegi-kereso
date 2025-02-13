@@ -7,7 +7,7 @@ import {
     TooltipTrigger,
   } from "@/components/ui/tooltip"
 
-const GithubB = () => {
+const GithubB = ({ darkMode }: {darkMode: boolean}) => {
     
     const openGithub = () => {
         window.open("https://github.com/bqnce/erettsegi-kereso")
@@ -16,10 +16,10 @@ const GithubB = () => {
     return(
         <TooltipProvider>
             <Tooltip delayDuration={150}>
-                <TooltipTrigger className='p-2 rounded-lg border border-[#1f1f1f] hover:bg-[#090909] transition-colors duration-300 cursor-pointer' onClick={openGithub}>
-                    <Github />
+                <TooltipTrigger className={`p-2 rounded-lg border  transition-colors duration-300 cursor-pointer ${darkMode ? "border-[#1f1f1f] hover:bg-[#090909]" : "border-[#dcdcdc] hover:bg-[#eeeeee]"}`} onClick={openGithub}>
+                    <Github color={darkMode ? "#dbdbdb" : "#090909"}/>
                 </TooltipTrigger>
-                <TooltipContent className='bg-[#121212] border border-[#2f2f2f] text-[#dbdbdb] select-none'>
+                <TooltipContent className={`border select-none ${darkMode ? "border-[#2f2f2f] text-[#dbdbdb] bg-[#121212]" : "border-[#dcdcdc] text-[#070707] bg-[#f5f5f5]"}`}>
                 <p>Forráskód</p>
                 </TooltipContent>
             </Tooltip>
