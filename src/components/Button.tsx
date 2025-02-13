@@ -1,3 +1,5 @@
+import * as React from "react";
+
 interface ButtonProps {
   onClick: () => void;
   disabled: boolean;
