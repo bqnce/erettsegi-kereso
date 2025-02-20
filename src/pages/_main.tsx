@@ -25,7 +25,10 @@ const MainComponent = () => {
   const [isZipUt, setIsZipUt] = useState<boolean>(false);
   const [errormsg, setErrormsg] = useState<boolean>(false);
   const [darkMode, setDarkMode] = useState<boolean>(() => {
-    return localStorage.getItem("theme") === "dark"
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("theme") === "dark";
+    }
+    return true; // Alapértelmezett érték világos mód
   });
 
   const urls = generateUrls(ev, idoszak, szint, targy, honap);
