@@ -2,15 +2,15 @@ import { optionsTargy, optionsEv, optionsSzint, optionsIdoszak } from '../utils/
 import { useEffect, useState } from "react"
 import { fetchFile }  from '@/utils/fetch'
 import { generateUrls } from '@/utils/generateUrls'
-import ButtonComponent from "@/components/Button"
-import Confirmation from '@/components/Confirmation'
-import Header from '@/components/Header'
-import Combobox from '@/components/Combobox'
-import GithubB from '@/components/GithubB'
-import InfoModal from '@/components/InfoModal'
+import ButtonComponent from "@/components/inputs/Button.tsx"
+import Header from '@/components/layout/Header.tsx'
+import Combobox from '@/components/inputs/Combobox.tsx'
+import GithubB from '@/components/icons/GithubB.tsx'
+import InfoModal from '@/components/icons/InfoModal.tsx'
 import ErrorFooter from '@/components/ErrorFooter'
 import '@/App.css'
 import { Sun, Moon } from 'lucide-react'
+//import Topbar from "@/components/Topbar.tsx";
 
 const MainComponent = () => {
   const [targy, setTargy] = useState<string>("");
@@ -67,7 +67,17 @@ const MainComponent = () => {
   };
 
   const handleModes = () => {
-    setDarkMode(!darkMode);
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+    localStorage.setItem("theme", newMode ? "dark" : "light");
+
+    if (newMode) {
+      document.documentElement.classList.add("dark");
+      document.body.style.backgroundColor = "#070707";
+    } else {
+      document.documentElement.classList.remove("dark");
+      document.body.style.backgroundColor = "#ffffff";
+    }
   }
 
   useEffect(() => {
@@ -82,6 +92,7 @@ const MainComponent = () => {
 
   return (
     <>
+      {/*<Topbar darkMode={darkMode}/>*/}
       <div className={`h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l  overflow-hidden ${darkMode ? "md:border-[#1f1f1f]" : "md:border-[#b5b5b5]"}`}>
           <Header darkMode={darkMode} />
           <section className='h-[490px] flex justify-center items-center gap-4 flex-col'>
@@ -101,12 +112,12 @@ const MainComponent = () => {
              {isTask && urls?.task && (<ButtonComponent title="Feladat" onClick={() => window.open(urls.task as string)} disabled={isDisabled} darkMode={darkMode} />)}
              {isGuide && urls?.guide && (<ButtonComponent title="Útmutató" onClick={() => window.open(urls.guide as string)} disabled={isDisabled} darkMode={darkMode} />)}
              {isAudio && urls?.audio && (<ButtonComponent title="Hanganyag" onClick={() => window.open(urls.audio as string)} disabled={isDisabled} darkMode={darkMode} />)}
-             {isZip && urls?.zip && (<Confirmation title="Forrás" onClick={() => window.open(urls.zip as string)} disabled={isDisabled} fileName={urls.zip} darkMode={darkMode} />)}
-             {isZipUt && urls?.zipUt && (<Confirmation title="Megoldás" onClick={() => window.open(urls.zipUt as string)} disabled={isDisabled} fileName={urls.zipUt} darkMode={darkMode} />)}
+             {isZip && urls?.zip && (<ButtonComponent title="Forrás" onClick={() => window.open(urls.zip as string)} disabled={isDisabled} darkMode={darkMode} />)}
+             {isZipUt && urls?.zipUt && (<ButtonComponent title="Megoldás" onClick={() => window.open(urls.zipUt as string)} disabled={isDisabled} darkMode={darkMode} />)}
              {errormsg && (<ErrorFooter />)}
           </footer>
       </div>
-    </>
+      </>
   );
 };
 
