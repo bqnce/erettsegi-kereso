@@ -86,7 +86,7 @@ const MainComponent = () => {
             {isZipUt && urls?.zipUt && (<ButtonComponent title="Megoldás" onClick={() => window.open(urls.zipUt as string)} disabled={isDisabled} darkMode={darkMode} />)}
             {errormsg && (<ErrorFooter />)}
           </footer>
-          <div className="absolute flex justify-center items-center left-0 w-full bottom-5 gap-2">
+          <div className="absolute flex justify-center items-center left-0 w-full top-3 gap-2">
             <GithubB darkMode={darkMode} />
             <InfoModal darkMode={darkMode} />
             <div className={`p-2 rounded-lg border  transition-colors duration-300 cursor-pointer ${darkMode ? "border-[#1f1f1f] hover:bg-[#090909]" : "border-[#dcdcdc] hover:bg-[#eeeeee]"}`} onClick={handleModes}>
