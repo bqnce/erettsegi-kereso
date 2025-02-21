@@ -1,4 +1,4 @@
-export const optionsTargy = [
+export const optionsSubject = [
     { value: "magyir", label: "Magyar irodalom" },
     { value: "mat", label: "Matematika" },
     { value: "tort", label: "Történelem" },
@@ -7,7 +7,7 @@ export const optionsTargy = [
     { value: "digkult", label: "Digitális kultúra" },
   ];
   
-export const optionsEv = [
+export const optionsYear = [
     { value: "2025", label: "2025" },
     { value: "2024", label: "2024" },
     { value: "2023", label: "2023" },
@@ -23,12 +23,12 @@ export const optionsEv = [
     { value: "2013", label: "2013" },
   ];
   
-export const optionsIdoszak = [
+export const optionsPeriod = [
     { value: "osz", label: "Ősz" },
     { value: "tavasz", label: "Tavasz" },
   ];
   
-export const optionsSzint = [
+export const optionsLevel = [
     { value: "kozep", label: "Közép" },
     { value: "emelt", label: "Emelt" },
   ];

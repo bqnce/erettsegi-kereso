@@ -1,5 +1,5 @@
-import { optionsTargy, optionsEv, optionsSzint, optionsIdoszak } from '../utils/options'
-import { useEffect, useState } from "react"
+import { optionsSubject, optionsYear, optionsLevel, optionsPeriod } from '../utils/options'
+import { useState } from "react"
 import { fetchFile }  from '@/utils/fetch'
 import { generateUrls } from '@/utils/generateUrls'
 import ButtonComponent from "@/components/inputs/Button.tsx"
@@ -8,16 +8,15 @@ import Combobox from '@/components/inputs/Combobox.tsx'
 import GithubB from '@/components/icons/GithubB.tsx'
 import InfoModal from '@/components/icons/InfoModal.tsx'
 import ErrorFooter from '@/components/ErrorFooter'
-import '@/App.css'
 import { Sun, Moon } from 'lucide-react'
+import '@/App.css'
 //import Topbar from "@/components/Topbar.tsx";
 
 const MainComponent = () => {
-  const [targy, setTargy] = useState<string>("");
-  const [ev, setEv] = useState<string>("");
-  const [szint, setSzint] = useState<string>("");
-  const [idoszak, setIdoszak] = useState<string>("");
-  const [honap, setHonap] = useState<string>("");
+  const [subject, setSubject] = useState<string>("");
+  const [year, setYear] = useState<string>("");
+  const [level, setLevel] = useState<string>("");
+  const [period, setPeriod] = useState<string>("");
   const [isTask, setIsTask] = useState<boolean>(false);
   const [isGuide, setIsGuide] = useState<boolean>(false);
   const [isAudio, setIsAudio] = useState<boolean>(false);
@@ -25,28 +24,12 @@ const MainComponent = () => {
   const [isZipUt, setIsZipUt] = useState<boolean>(false);
   const [errormsg, setErrormsg] = useState<boolean>(false);
   const [darkMode, setDarkMode] = useState<boolean>(() => {
-    // Alapértelmezetten dark mode, ha nincs mentett beállítás
     const storedTheme = localStorage.getItem("theme");
-    return storedTheme === "dark" ? true : true; // Ha nincs tárolt érték, alapból dark mode
+    return storedTheme === "dark" ? true : true;
   });
 
-  const urls = generateUrls(ev, idoszak, szint, targy, honap);
-  const isDisabled = !targy || !ev || !idoszak || !szint;
-
-  useEffect(() => {
-    if (idoszak === "osz") {
-      setHonap("okt");
-    } else if (idoszak === "tavasz") {
-      setHonap("maj");
-    }
-  }, [idoszak]);
-
-  useEffect(() => {
-    if (targy && ev && idoszak && szint) {
-      handleSearch().then(() => console.log("Search completed"))
-          .catch((err) => console.log(err));
-    }
-  }, [targy, ev, idoszak, szint]);
+  const urls = generateUrls(year, period, level, subject);
+  const isDisabled = !subject || !year || !period || !level;
 
   const handleSearch = async () => {
     const taskAvailable = await fetchFile(urls.task);
@@ -82,26 +65,19 @@ const MainComponent = () => {
     }
   };
 
-  useEffect(() => {
-    if (darkMode) {
-      localStorage.setItem("theme", "dark");
-      document.body.style.backgroundColor = darkMode ? "#070707" : "#ffffff";
-    } else {
-      localStorage.setItem("theme", "light");
-      document.body.style.backgroundColor = darkMode ? "#070707" : "#ffffff";
-    }
-  }, [darkMode]);
-
   return (
       <>
-        <div className={`h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l  overflow-hidden ${darkMode ? "md:border-[#1f1f1f]" : "md:border-[#b5b5b5]"}`}>
+        <div className={`relative h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l  overflow-hidden ${darkMode ? "md:border-[#1f1f1f]" : "md:border-[#b5b5b5]"}`}>
           <Header darkMode={darkMode} />
           <section className='h-[490px] flex justify-center items-center gap-4 flex-col'>
-            <Combobox title="Tárgy" errorMsg="A tárgy nem elérhető" options={optionsTargy} onValueChange={setTargy} darkMode={darkMode} />
-            <Combobox title="Év" errorMsg="Az év nem elérhető" options={optionsEv} onValueChange={setEv} darkMode={darkMode} />
-            <Combobox title="Időszak" errorMsg="Az időszak nem elérhető" options={optionsIdoszak} onValueChange={setIdoszak} darkMode={darkMode} />
-            <Combobox title="Szint" errorMsg="A szint nem elérhető" options={optionsSzint} onValueChange={setSzint} darkMode={darkMode} />
-            <div className='flex gap-3'>
+            <Combobox title="Tárgy" errorMsg="A tárgy nem elérhető" options={optionsSubject} onValueChange={setSubject} darkMode={darkMode} />
+            <Combobox title="Év" errorMsg="Az év nem elérhető" options={optionsYear} onValueChange={setYear} darkMode={darkMode} />
+            <Combobox title="Időszak" errorMsg="Az időszak nem elérhető" options={optionsPeriod} onValueChange={setPeriod} darkMode={darkMode} />
+            <Combobox title="Szint" errorMsg="A szint nem elérhető" options={optionsLevel} onValueChange={setLevel} darkMode={darkMode} />
+            <div className='flex flex-col gap-2 justify-center items-center mb-2'>
+              <ButtonComponent onClick={handleSearch} disabled={isDisabled} darkMode={darkMode} title="Keresés" />
+            </div>
+            <div className="absolute flex right-2 bottom-[14%] gap-2">
               <GithubB darkMode={darkMode} />
               <InfoModal darkMode={darkMode} />
               <div className={`p-2 rounded-lg border  transition-colors duration-300 cursor-pointer ${darkMode ? "border-[#1f1f1f] hover:bg-[#090909]" : "border-[#dcdcdc] hover:bg-[#eeeeee]"}`} onClick={handleModes}>

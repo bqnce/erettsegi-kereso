@@ -1,11 +1,21 @@
-export const generateUrls = (ev: string, idoszak: string, szint: string, targy: string, honap: string) => {
-    const basePath = `api/erettsegi/feladatok_${ev}${idoszak}_${szint}`;
-  
+
+export const generateUrls = (year: string, period: string, level: string, subject: string) => {
+    const basePath = `api/erettsegi/feladatok_${year}${period}_${level}`;
+    const month = (() => {
+        if (period === "osz") {
+            return "okt";
+        } else if (period === "tavasz") {
+            return "maj";
+        } else {
+            return "";
+        }
+    })();
+
     return {
-      task: `${basePath}/${szint.substring(0, 1)}_${targy}_${ev.substring(2, 4)}${honap}_fl.pdf`,
-      guide: `${basePath}/${szint.substring(0, 1)}_${targy}_${ev.substring(2, 4)}${honap}_ut.pdf`,
-      audio: `${basePath}/${szint.substring(0, 1)}_${targy}_${ev.substring(2, 4)}${honap}_fl.mp3`,
-      zip: `${basePath}/${szint.substring(0, 1)}_${targy}for_${ev.substring(2, 4)}${honap}_fl.zip`,
-      zipUt: `${basePath}/${szint.substring(0, 1)}_${targy}meg_${ev.substring(2, 4)}${honap}_ut.zip`,
+      task: `${basePath}/${level.substring(0, 1)}_${subject}_${year.substring(2, 4)}${month}_fl.pdf`,
+      guide: `${basePath}/${level.substring(0, 1)}_${subject}_${year.substring(2, 4)}${month}_ut.pdf`,
+      audio: `${basePath}/${level.substring(0, 1)}_${subject}_${year.substring(2, 4)}${month}_fl.mp3`,
+      zip: `${basePath}/${level.substring(0, 1)}_${subject}for_${year.substring(2, 4)}${month}_fl.zip`,
+      zipUt: `${basePath}/${level.substring(0, 1)}_${subject}meg_${year.substring(2, 4)}${month}_ut.zip`,
     };
 };
