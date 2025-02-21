@@ -12,9 +12,9 @@ Tasks:
 [x] Hónap változó felesleges [02.20]
 [x] Kevesebb useEffect [02.20]
 [x] Axios api hívásnál [02.20]
-[] PDF / MP3 beágyazása az oldalra
 [] Kevesebb api hívások (csak arra küldjön a backend api hívást, amire szükséges)
 [] Ha pl történelemre megyek rá, az összes történelmet listázza ki (utána lehessen szűrni a listát tovább évvel szinttel stb) 
+[] PDF / MP3 beágyazása az oldalra
 
 [] Regisztráció UI
 [] Regisztráció UI - Reszponzivitás

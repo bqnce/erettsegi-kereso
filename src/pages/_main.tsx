@@ -67,7 +67,7 @@ const MainComponent = () => {
 
   return (
       <>
-        <div className={`relative h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l  overflow-hidden ${darkMode ? "md:border-[#1f1f1f]" : "md:border-[#b5b5b5]"}`}>
+        <div className={`h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l  overflow-hidden ${darkMode ? "md:border-[#1f1f1f]" : "md:border-[#b5b5b5]"}`}>
           <Header darkMode={darkMode} />
           <section className='h-[490px] flex justify-center items-center gap-4 flex-col'>
             <Combobox title="Tárgy" errorMsg="A tárgy nem elérhető" options={optionsSubject} onValueChange={setSubject} darkMode={darkMode} />
@@ -76,13 +76,6 @@ const MainComponent = () => {
             <Combobox title="Szint" errorMsg="A szint nem elérhető" options={optionsLevel} onValueChange={setLevel} darkMode={darkMode} />
             <div className='flex flex-col gap-2 justify-center items-center mb-2'>
               <ButtonComponent onClick={handleSearch} disabled={isDisabled} darkMode={darkMode} title="Keresés" />
-            </div>
-            <div className="absolute flex right-2 bottom-[14%] gap-2">
-              <GithubB darkMode={darkMode} />
-              <InfoModal darkMode={darkMode} />
-              <div className={`p-2 rounded-lg border  transition-colors duration-300 cursor-pointer ${darkMode ? "border-[#1f1f1f] hover:bg-[#090909]" : "border-[#dcdcdc] hover:bg-[#eeeeee]"}`} onClick={handleModes}>
-                {darkMode ? <Sun color={darkMode ? "#dbdbdb" : "#090909"} /> : <Moon color={darkMode ? "#dbdbdb" : "#090909"} />}
-              </div>
             </div>
           </section>
           <footer className={`sm:h-auto lg:h-[80px] p-4 rounded-b border-b border-t flex justify-center items-center gap-3 flex-wrap ${darkMode ? "border-[#1f1f1f]" : "border-[#b5b5b5]"}`}>
@@ -93,6 +86,14 @@ const MainComponent = () => {
             {isZipUt && urls?.zipUt && (<ButtonComponent title="Megoldás" onClick={() => window.open(urls.zipUt as string)} disabled={isDisabled} darkMode={darkMode} />)}
             {errormsg && (<ErrorFooter />)}
           </footer>
+          <div className="absolute flex justify-center items-center left-0 w-full bottom-5 gap-2">
+            <GithubB darkMode={darkMode} />
+            <InfoModal darkMode={darkMode} />
+            <div className={`p-2 rounded-lg border  transition-colors duration-300 cursor-pointer ${darkMode ? "border-[#1f1f1f] hover:bg-[#090909]" : "border-[#dcdcdc] hover:bg-[#eeeeee]"}`} onClick={handleModes}>
+              {darkMode ? <Sun color={darkMode ? "#dbdbdb" : "#090909"} /> : <Moon color={darkMode ? "#dbdbdb" : "#090909"} />}
+            </div>
+          </div>
+
         </div>
       </>
   );
