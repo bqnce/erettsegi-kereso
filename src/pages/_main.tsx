@@ -8,7 +8,7 @@ import Combobox from '@/components/inputs/Combobox.tsx'
 import GithubB from '@/components/icons/GithubB.tsx'
 import InfoModal from '@/components/icons/InfoModal.tsx'
 import ErrorFooter from '@/components/ErrorFooter'
-import { Sun, Moon } from 'lucide-react'
+import { Sun, Moon, HandCoins } from 'lucide-react'
 import '@/App.css'
 //import Topbar from "@/components/Topbar.tsx";
 
@@ -93,7 +93,12 @@ const MainComponent = () => {
               {darkMode ? <Sun color={darkMode ? "#dbdbdb" : "#090909"} /> : <Moon color={darkMode ? "#dbdbdb" : "#090909"} />}
             </div>
           </div>
-
+          <div className="absolute bottom-2 right-2 p-2 ">
+            <button className="bg-indigo-700 rounded-md p-2 font-semibold cursor-pointer flex justify-center items-center hover:bg-indigo-900 transition-all duration-300" onClick={() => {window.open("https://buymeacoffee.com/erettsegikereso")}}>
+              <HandCoins color="#ffffff" size={25} className="mr-2"/>
+              BuyMeACoffee
+            </button>
+          </div>
         </div>
       </>
   );

@@ -8,10 +8,12 @@ Tasks:
 [x] Light mode (https://www.youtube.com/watch?v=vIBKSmWAdIA) [02.12]
 [x] Topbar [02.19]
 [x] Design simítások [02.19]
-[x] Keresés gomb [02.20]
-[x] Hónap változó felesleges [02.20]
-[x] Kevesebb useEffect [02.20]
-[x] Axios api hívásnál [02.20]
+[x] Light mode bugfix [02.20]
+[x] Keresés gomb [02.21]
+[x] Hónap változó felesleges [02.21]
+[x] Kevesebb useEffect [02.21]
+[x] Axios api hívásnál [02.21]
+[x] Ikonoknak helyet csinálni [02.21]
 [] Kevesebb api hívások (csak arra küldjön a backend api hívást, amire szükséges)
 [] Ha pl történelemre megyek rá, az összes történelmet listázza ki (utána lehessen szűrni a listát tovább évvel szinttel stb) 
 [] PDF / MP3 beágyazása az oldalra

@@ -6,8 +6,6 @@ export const generateUrls = (year: string, period: string, level: string, subjec
             return "okt";
         } else if (period === "tavasz") {
             return "maj";
-        } else {
-            return "";
         }
     })();
 
