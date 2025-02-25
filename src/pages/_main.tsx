@@ -25,6 +25,7 @@ const MainComponent = () => {
   const [isZip, setIsZip] = useState<boolean>(false);
   const [isZipUt, setIsZipUt] = useState<boolean>(false);
   const [errormsg, setErrormsg] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [darkMode, setDarkMode] = useState<boolean>(() => {
     const storedTheme = localStorage.getItem("theme");
     return storedTheme === "dark" ? true : true;
@@ -34,30 +35,65 @@ const MainComponent = () => {
   const isDisabled = !subject || !year || !period || !level;
 
   const handleSearch = async () => {
-    const taskAvailable = await fetchFile(urls.task);
-    const guideAvailable = await fetchFile(urls.guide);
-    const audioAvailable = await fetchFile(urls.audio);
-    const zipAvailable = await fetchFile(urls.zip);
-    const zipUtAvailable = await fetchFile(urls.zipUt);
+    setIsLoading(true);
+    
+    setIsTask(false);
+    setIsGuide(false);
+    setIsAudio(false);
+    setIsZip(false);
+    setIsZipUt(false);
+    setErrormsg(false);
 
-    setIsTask(taskAvailable);
-    setIsGuide(guideAvailable);
-    setIsAudio(audioAvailable);
-    setIsZip(zipAvailable);
-    setIsZipUt(zipUtAvailable);
+    try {
 
-    if (
-      !taskAvailable &&
-      !guideAvailable &&
-      !audioAvailable &&
-      !zipAvailable &&
-      !zipUtAvailable
-    ) {
+      const baseSubjects = ["mat", "tort", "magyir"];
+      const languageSubjects = ["angol", "nemet"];
+      
+      let results: boolean[] = [];
+
+      if (baseSubjects.includes(subject)) {
+        const [taskAvailable, guideAvailable] = await Promise.all([
+          fetchFile(urls.task),
+          fetchFile(urls.guide)
+        ]);
+        setIsTask(taskAvailable);
+        setIsGuide(guideAvailable);
+        results = [taskAvailable, guideAvailable];
+      }
+
+      else if (languageSubjects.includes(subject)) {
+        const [taskAvailable, guideAvailable, audioAvailable] = await Promise.all([
+          fetchFile(urls.task),
+          fetchFile(urls.guide),
+          fetchFile(urls.audio)
+        ]);
+        setIsTask(taskAvailable);
+        setIsGuide(guideAvailable);
+        setIsAudio(audioAvailable);
+        results = [taskAvailable, guideAvailable, audioAvailable];
+      }
+
+      else if (subject === "digkult") {
+        const [taskAvailable, guideAvailable, zipAvailable, zipUtAvailable] = await Promise.all([
+          fetchFile(urls.task),
+          fetchFile(urls.guide),
+          fetchFile(urls.zip),
+          fetchFile(urls.zipUt)
+        ]);
+        setIsTask(taskAvailable);
+        setIsGuide(guideAvailable);
+        setIsZip(zipAvailable);
+        setIsZipUt(zipUtAvailable);
+        results = [taskAvailable, guideAvailable, zipAvailable, zipUtAvailable];
+      }
+
+      setErrormsg(!results.some(result => result === true));
+    } catch (error) {
       setErrormsg(true);
-    } else {
-      setErrormsg(false);
-    }
-  };
+      console.error('Error fetching files:', error);
+    } finally {
+      setIsLoading(false);
+    }  };
 
   const handleModes = () => {
     const newMode = !darkMode;
