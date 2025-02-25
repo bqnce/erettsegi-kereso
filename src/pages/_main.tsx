@@ -85,7 +85,7 @@ const MainComponent = () => {
           }`}
         >
           <Header darkMode={darkMode} />
-          <section className="min-h-[400px] py-6 flex justify-center items-center gap-3 flex-col">
+          <section className="min-h-[450px] py-6 flex justify-center items-center gap-3 flex-col">
             <Combobox
               title="Tárgy"
               errorMsg="A tárgy nem elérhető"
@@ -171,7 +171,7 @@ const MainComponent = () => {
             {errormsg && <ErrorFooter />}
           </footer>
         </div>
-        <div className="flex mt-4 text-white gap-4">
+        <div className="flex mt-8 text-white gap-4">
           <button
             className="bg-indigo-700 rounded-md p-2 font-semibold cursor-pointer flex justify-center items-center hover:bg-indigo-900 transition-all duration-300"
             onClick={() => {
@@ -182,7 +182,7 @@ const MainComponent = () => {
             BuyMeACoffee
           </button>
           <div
-            className={`p-2 rounded-lg border transition-colors duration-300 cursor-pointer ${
+            className={`p-2 rounded-lg border transition-all duration-300 cursor-pointer ${
               darkMode
                 ? "border-[#1f1f1f] hover:bg-[#090909]"
                 : "border-[#dcdcdc] hover:bg-[#eeeeee]"
