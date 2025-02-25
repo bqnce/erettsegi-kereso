@@ -75,10 +75,13 @@ const MainComponent = () => {
 
   return (
     <>
+      <div className="absolute w-screen top-0 h-[10px] bg-indigo-500 blur-2xl"></div>
       <div className="min-h-screen w-screen flex flex-col justify-center items-center">
         <div
           className={`w-screen md:w-[500px] rounded md:border-r md:border-l ${
-            darkMode ? "md:border-[#1f1f1f] text-[#dbdbdb]" : "md:border-[#b5b5b5] text-[#070707]"
+            darkMode
+              ? "md:border-[#1f1f1f] text-[#dbdbdb]"
+              : "md:border-[#b5b5b5] text-[#070707]"
           }`}
         >
           <Header darkMode={darkMode} />
@@ -167,10 +170,9 @@ const MainComponent = () => {
             )}
             {errormsg && <ErrorFooter />}
           </footer>
-          
         </div>
         <div className="flex mt-4 text-white gap-4">
-        <button
+          <button
             className="bg-indigo-700 rounded-md p-2 font-semibold cursor-pointer flex justify-center items-center hover:bg-indigo-900 transition-all duration-300"
             onClick={() => {
               window.open("https://buymeacoffee.com/erettsegikereso");
@@ -193,7 +195,6 @@ const MainComponent = () => {
               <Moon color={darkMode ? "#dbdbdb" : "#090909"} />
             )}
           </div>
-
         </div>
       </div>
     </>
