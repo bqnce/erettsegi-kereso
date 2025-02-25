@@ -7,7 +7,7 @@ import Header from '@/components/layout/Header.tsx'
 import Combobox from '@/components/inputs/Combobox.tsx'
 import GithubB from '@/components/icons/GithubB.tsx'
 import InfoModal from '@/components/icons/InfoModal.tsx'
-import ErrorFooter from '@/components/ErrorFooter'
+import ErrorFooter from '@/components/footer/ErrorFooter'
 import { Sun, Moon, HandCoins } from 'lucide-react'
 import '@/App.css'
 
