@@ -10,7 +10,6 @@ import InfoModal from '@/components/icons/InfoModal.tsx'
 import ErrorFooter from '@/components/ErrorFooter'
 import { Sun, Moon, HandCoins } from 'lucide-react'
 import '@/App.css'
-//import Topbar from "@/components/Topbar.tsx";
 
 const MainComponent = () => {
   const [subject, setSubject] = useState<string>("");
@@ -67,7 +66,7 @@ const MainComponent = () => {
 
   return (
       <>
-        <div className={`h-auto w-screen md:h-[650px] md:w-[500px] rounded md:border-r md:border-l  overflow-hidden ${darkMode ? "md:border-[#1f1f1f]" : "md:border-[#b5b5b5]"}`}>
+        <div className={`h-auto w-screen md:h-auto md:w-[500px] rounded md:border-r md:border-l  ${darkMode ? "md:border-[#1f1f1f]" : "md:border-[#b5b5b5]"}`}>
           <Header darkMode={darkMode} />
           <section className='h-[490px] flex justify-center items-center gap-4 flex-col'>
             <Combobox title="Tárgy" errorMsg="A tárgy nem elérhető" options={optionsSubject} onValueChange={setSubject} darkMode={darkMode} />
@@ -93,12 +92,12 @@ const MainComponent = () => {
               {darkMode ? <Sun color={darkMode ? "#dbdbdb" : "#090909"} /> : <Moon color={darkMode ? "#dbdbdb" : "#090909"} />}
             </div>
           </div>
-          <div className="absolute bottom-2 right-2 p-2 ">
-            <button className="bg-indigo-700 rounded-md p-2 font-semibold cursor-pointer flex justify-center items-center hover:bg-indigo-900 transition-all duration-300" onClick={() => {window.open("https://buymeacoffee.com/erettsegikereso")}}>
-              <HandCoins color="#ffffff" size={25} className="mr-2"/>
-              BuyMeACoffee
-            </button>
-          </div>
+        </div>
+        <div className="fixed bottom-3 left-0 p-2 w-full flex justify-center items-center">
+          <button className="bg-indigo-700 rounded-md p-2 font-semibold cursor-pointer flex justify-center items-center hover:bg-indigo-900 transition-all duration-300" onClick={() => {window.open("https://buymeacoffee.com/erettsegikereso")}}>
+            <HandCoins color="#ffffff" size={25} className="mr-2" />
+            BuyMeACoffee
+          </button>
         </div>
       </>
   );

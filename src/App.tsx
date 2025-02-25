@@ -10,15 +10,17 @@ const App = () => {
 
     return (
     <>
-      <div className={`text-[#dbdbdb] flex justify-center items-center min-h-[100vh] flex-col overflow-hidden ${darkMode ? "text-[#dbdbdb]" : "text-[#070707]"}`}>
+      <div className={`text-[#dbdbdb] flex justify-center items-center min-h-[100vh] flex-col ${darkMode ? "text-[#dbdbdb]" : "text-[#070707]"}`}>
           <BrowserRouter>
               <Routes>
                   <Route path="/" element={<MainComponent />} />
+
                   {/*<Route path="/login" element={<Login />} />*/}
                   {/*<Route path="/register" element={<Register />} />*/}
               </Routes>
           </BrowserRouter>
           <Analytics />
+
       </div>
     </>
   );
