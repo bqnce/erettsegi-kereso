@@ -4,7 +4,7 @@ interface ButtonProps {
   onClick: () => void;
   disabled: boolean;
   darkMode: boolean;
-  title: string;
+  title: string | JSX.Element;
   icon?: React.ReactElement;
 }
 

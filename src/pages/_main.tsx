@@ -11,7 +11,7 @@ import ButtonComponent from "@/components/inputs/Button.tsx";
 import Header from "@/components/layout/Header.tsx";
 import Combobox from "@/components/inputs/Combobox.tsx";
 import ErrorFooter from "@/components/footer/ErrorFooter";
-import { Sun, Moon, HandCoins } from "lucide-react";
+import { Sun, Moon, HandCoins, Loader2 } from "lucide-react";
 import "@/App.css";
 
 const MainComponent = () => {
@@ -26,6 +26,7 @@ const MainComponent = () => {
   const [isZipUt, setIsZipUt] = useState<boolean>(false);
   const [errormsg, setErrormsg] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [lastSearch, setLastSearch] = useState<string>('');
   const [darkMode, setDarkMode] = useState<boolean>(() => {
     const storedTheme = localStorage.getItem("theme");
     return storedTheme === "dark" ? true : true;
@@ -33,9 +34,15 @@ const MainComponent = () => {
 
   const urls = generateUrls(year, period, level, subject);
   const isDisabled = !subject || !year || !period || !level;
+  const searchKey = `${subject}-${year}-${period}-${level}`;
 
   const handleSearch = async () => {
+    if(searchKey === lastSearch){
+      return;
+    }
+
     setIsLoading(true);
+    setLastSearch(searchKey)
     
     setIsTask(false);
     setIsGuide(false);
@@ -153,9 +160,16 @@ const MainComponent = () => {
             <div className="flex flex-col gap-2 justify-center items-center mt-2">
               <ButtonComponent
                 onClick={handleSearch}
-                disabled={isDisabled}
+                disabled={isDisabled || searchKey === lastSearch}
                 darkMode={darkMode}
-                title="Keresés"
+                title={isLoading ? (
+                  <div className="flex items-center gap-2">
+                    <Loader2 className="h-4 w-4 animate-spin" />
+                    Keresés...
+                  </div>
+                ) : (
+                  "Keresés"
+                )}
               />
             </div>
           </section>
