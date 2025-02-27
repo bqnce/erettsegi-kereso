@@ -15,7 +15,7 @@ const Header = ({ darkMode }: { darkMode: boolean }) => {
         Érettségi Kereső
       </span>
       <p
-        className={`text-sm mt-1 bg-gradient-to-r bg-clip-text text-transparent animate-text ${
+        className={`text-sm mt-1 bg-gradient-to-r bg-clip-text text-center text-transparent animate-text ${
           darkMode ? "from-gray-500 via-zinc-200 to-neutral-500" : "text-[#666666]"
         }`}
       >
