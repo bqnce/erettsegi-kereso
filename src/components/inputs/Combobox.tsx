@@ -48,6 +48,7 @@ export default function Combobox({
             {value
               ? options.find((option) => option.value === value)?.label
               : title}
+            <span className="text-red-500 font-mono ml-1">*</span>
           </span>
           <ChevronsUpDown className="opacity-50" />
         </Button>

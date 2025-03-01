@@ -11,7 +11,7 @@ import ButtonComponent from "@/components/inputs/Button.tsx";
 import Header from "@/components/layout/Header.tsx";
 import Combobox from "@/components/inputs/Combobox.tsx";
 import ErrorFooter from "@/components/footer/ErrorFooter";
-import { subjectYearMapping } from '@/utils/subjectYearMapping'
+import { subjectYearMapping } from "@/utils/subjectYearMapping";
 import { Sun, Moon, HandCoins, Loader2 } from "lucide-react";
 import "@/App.css";
 
@@ -27,7 +27,7 @@ const MainComponent = () => {
   const [isZipUt, setIsZipUt] = useState<boolean>(false);
   const [errormsg, setErrormsg] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [lastSearch, setLastSearch] = useState<string>('');
+  const [lastSearch, setLastSearch] = useState<string>("");
   const [darkMode, setDarkMode] = useState<boolean>(() => {
     const storedTheme = localStorage.getItem("theme");
     return storedTheme === "dark" ? true : true;
@@ -36,18 +36,20 @@ const MainComponent = () => {
   const urls = generateUrls(year, period, level, subject);
   const isDisabled = !subject || !year || !period || !level;
   const searchKey = `${subject}-${year}-${period}-${level}`;
-  const availableYears = subject 
-    ? optionsYear.filter(year => subjectYearMapping[subject]?.includes(year.value))
+  const availableYears = subject
+    ? optionsYear.filter((year) =>
+        subjectYearMapping[subject]?.includes(year.value)
+      )
     : [];
-    
+
   const handleSearch = async () => {
-    if(searchKey === lastSearch){
+    if (searchKey === lastSearch) {
       return;
     }
 
     setIsLoading(true);
-    setLastSearch(searchKey)
-    
+    setLastSearch(searchKey);
+
     setIsTask(false);
     setIsGuide(false);
     setIsAudio(false);
@@ -56,41 +58,38 @@ const MainComponent = () => {
     setErrormsg(false);
 
     try {
-
       const baseSubjects = ["mat", "tort", "magyir"];
       const languageSubjects = ["angol", "nemet"];
-      
+
       let results: boolean[] = [];
 
       if (baseSubjects.includes(subject)) {
         const [taskAvailable, guideAvailable] = await Promise.all([
           fetchFile(urls.task),
-          fetchFile(urls.guide)
+          fetchFile(urls.guide),
         ]);
         setIsTask(taskAvailable);
         setIsGuide(guideAvailable);
         results = [taskAvailable, guideAvailable];
-      }
-
-      else if (languageSubjects.includes(subject)) {
-        const [taskAvailable, guideAvailable, audioAvailable] = await Promise.all([
-          fetchFile(urls.task),
-          fetchFile(urls.guide),
-          fetchFile(urls.audio)
-        ]);
+      } else if (languageSubjects.includes(subject)) {
+        const [taskAvailable, guideAvailable, audioAvailable] =
+          await Promise.all([
+            fetchFile(urls.task),
+            fetchFile(urls.guide),
+            fetchFile(urls.audio),
+          ]);
         setIsTask(taskAvailable);
         setIsGuide(guideAvailable);
         setIsAudio(audioAvailable);
         results = [taskAvailable, guideAvailable, audioAvailable];
-      }
-
-      else if (subject === "digkult") {
-        const [taskAvailable, guideAvailable, zipAvailable, zipUtAvailable] = await Promise.all([
-          fetchFile(urls.task),
-          fetchFile(urls.guide),
-          fetchFile(urls.zip),
-          fetchFile(urls.zipUt)
-        ]);
+      } else if (subject === "digkult") {
+        const [taskAvailable, guideAvailable, zipAvailable, zipUtAvailable] =
+          await Promise.all([
+            fetchFile(urls.task),
+            fetchFile(urls.guide),
+            fetchFile(urls.zip),
+            fetchFile(urls.zipUt),
+          ]);
         setIsTask(taskAvailable);
         setIsGuide(guideAvailable);
         setIsZip(zipAvailable);
@@ -98,13 +97,14 @@ const MainComponent = () => {
         results = [taskAvailable, guideAvailable, zipAvailable, zipUtAvailable];
       }
 
-      setErrormsg(!results.some(result => result === true));
+      setErrormsg(!results.some((result) => result === true));
     } catch (error) {
       setErrormsg(true);
-      console.error('Error fetching files:', error);
+      console.error("Error fetching files:", error);
     } finally {
       setIsLoading(false);
-    }  };
+    }
+  };
 
   const handleModes = () => {
     const newMode = !darkMode;
@@ -123,6 +123,7 @@ const MainComponent = () => {
   return (
     <>
       <div className="absolute w-screen top-0 h-[10px] bg-indigo-500 blur-2xl"></div>
+
       <div className="min-h-screen w-screen flex flex-col justify-center items-center">
         <div
           className={`w-screen md:w-[500px] rounded md:border-r md:border-l ${
@@ -166,15 +167,18 @@ const MainComponent = () => {
                 onClick={handleSearch}
                 disabled={isDisabled || searchKey === lastSearch}
                 darkMode={darkMode}
-                title={isLoading ? (
-                  <div className="flex items-center gap-2">
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                    Keresés...
-                  </div>
-                ) : (
-                  "Keresés"
-                )}
+                title={
+                  isLoading ? (
+                    <div className="flex items-center gap-2">
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Keresés...
+                    </div>
+                  ) : (
+                    "Keresés"
+                  )
+                }
               />
+              
             </div>
           </section>
           <footer
@@ -225,21 +229,21 @@ const MainComponent = () => {
             {errormsg && <ErrorFooter />}
           </footer>
         </div>
-        <div className="flex mt-8 text-white gap-4">
+        <div className="flex mt-6 gap-4">
           <button
-            className="bg-indigo-700 rounded-md p-2 font-semibold cursor-pointer flex justify-center items-center hover:bg-indigo-900 transition-all duration-300"
+            className="bg-gradient-to-r from-indigo-600 to-indigo-700 rounded-md p-2 font-semibold cursor-pointer flex justify-center items-center hover:from-indigo-700 hover:to-indigo-800 transition-all duration-300 shadow-lg shadow-indigo-500/20"
             onClick={() => {
               window.open("https://buymeacoffee.com/erettsegikereso");
             }}
           >
             <HandCoins color="#ffffff" size={25} className="mr-2" />
-            BuyMeACoffee
+            <span className="text-white">BuyMeACoffee</span>
           </button>
           <div
-            className={`p-2 rounded-lg border transition-all duration-300 cursor-pointer ${
+            className={`p-2 rounded-lg border transition-all duration-300 cursor-pointer backdrop-blur-sm ${
               darkMode
-                ? "border-[#1f1f1f] hover:bg-[#090909]"
-                : "border-[#dcdcdc] hover:bg-[#eeeeee]"
+                ? "border-[#1f1f1f] bg-[#0a0a0a]/50 hover:bg-[#111111]/50"
+                : "border-[#e5e5e5] bg-white/50 hover:bg-white/80"
             }`}
             onClick={handleModes}
           >
