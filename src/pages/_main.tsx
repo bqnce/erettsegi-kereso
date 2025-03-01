@@ -11,6 +11,7 @@ import ButtonComponent from "@/components/inputs/Button.tsx";
 import Header from "@/components/layout/Header.tsx";
 import Combobox from "@/components/inputs/Combobox.tsx";
 import ErrorFooter from "@/components/footer/ErrorFooter";
+import { subjectYearMapping } from '@/utils/subjectYearMapping'
 import { Sun, Moon, HandCoins, Loader2 } from "lucide-react";
 import "@/App.css";
 
@@ -35,7 +36,10 @@ const MainComponent = () => {
   const urls = generateUrls(year, period, level, subject);
   const isDisabled = !subject || !year || !period || !level;
   const searchKey = `${subject}-${year}-${period}-${level}`;
-
+  const availableYears = subject 
+    ? optionsYear.filter(year => subjectYearMapping[subject]?.includes(year.value))
+    : [];
+    
   const handleSearch = async () => {
     if(searchKey === lastSearch){
       return;
@@ -139,7 +143,7 @@ const MainComponent = () => {
             <Combobox
               title="Év"
               errorMsg="Az év nem elérhető"
-              options={optionsYear}
+              options={availableYears}
               onValueChange={setYear}
               darkMode={darkMode}
             />
