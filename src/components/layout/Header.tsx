@@ -16,7 +16,7 @@ const Header = ({ darkMode }: { darkMode: boolean }) => {
       </span>
       <p
         className={`text-sm mt-1 bg-gradient-to-r bg-clip-text text-center text-transparent animate-text ${
-          darkMode ? "from-gray-500 via-zinc-200 to-neutral-500" : "text-[#666666]"
+          darkMode ? "from-gray-500 via-zinc-200 to-neutral-500" : "from-gray-900 via-zinc-700 to-neutral-800"
         }`}
       >
         Válaszd ki a <span className="font-normal">tárgyat</span>, <span className="font-normal">évet</span>, <span className="font-normal">időszakot</span> és <span className="font-normal">szintet</span> a kereséshez
